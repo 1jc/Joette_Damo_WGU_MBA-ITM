@@ -1,0 +1,320 @@
+1.If marginal cost is rising,
+
+	a. marginal product must be falling.	
+	b. marginal product must be rising.	
+	c. average variable cost must be falling.	
+	d. average fixed cost must be rising.
+2.Average total cost is very high when a small amount of output is produced because
+
+	a. average variable cost is high.	
+	b. marginal product is high.	
+	c. marginal cost is high.	
+	d. average fixed cost is high.
+3.When marginal cost is less than average total cost,
+
+	a. average total cost is falling.	
+	b. marginal cost must be falling.	
+	c. average total cost is rising.	
+	d. average variable cost must be falling.	
+4.Marginal cost is equal to average total cost when
+
+	a. average total cost is at its minimum.	
+	b. average variable cost is falling.	
+	c. marginal cost is at its minimum.	
+	d. average fixed cost is rising.
+5.The most likely explanation for economies of scale is
+
+	a. coordination problems.	
+	b. increasing marginal cost.	
+	c. decreasing marginal cost.	
+	d. specialization of labor.
+6.Suppose that a "doggie day care" firm uses only two inputs: hourly workers (labor) and a building (capital). In the short run, the firm most likely considers
+
+	a. labor to be variable and capital to be fixed.	
+	b. both labor and capital to be variable.	
+	c. both labor and capital to be fixed.	
+	d. capital to be variable and labor to be fixed
+7.If a firm uses labor to produce output, the firm's production function depicts the relationship between
+
+	a. marginal product and marginal cost.	
+	b. the maximum quantity that the firm can produce as it adds more capital to a fixed quantity of labor.	
+	c. fixed inputs and variable inputs in the short run.	
+	d. the number of workers and the quantity of output.	
+8.If a firm produces nothing, which of the following costs will be zero?
+
+	a. Fixed cost	
+	b. Opportunity cost	
+	c. Variable cost	
+	d. Total cost	
+9.The short-run supply curve for a firm in a perfectly competitive market is
+
+	a. likely to slope downward.	
+	b. the portion of its marginal cost curve that lies above its average variable cost.	
+	c. horizontal.	
+	d. determined by forces external to the firm.	
+10.Which of the following represents the firm's short-run condition for shutting down?
+
+	a. Shut down if TR < FC	
+	b. Shut down if TR < TC	
+	c. Shut down if P < ATC	
+	d. Shut down if TR < VC
+11.When new firms enter a perfectly competitive market,
+
+	a. prices will rise as existing firms raise prices to keep new firms out of the market.	
+	b. economic profits of existing firms will continue to be zero.	
+	c. existing firms may see their costs rise if more firms compete for limited resources.	
+	d. entering firms will earn zero economic profit upon entry into the market.
+12.If there is an increase in market demand in a perfectly competitive market, then in the short run
+
+	a. profits will rise.	
+	b. there will be no change in the demand curves faced by individual firms in the market.	
+	c. the demand curves facing firms will become more elastic.	
+	d. the demand curves facing firms will shift downward.	
+13.Consider a competitive market with a large number of identical firms. The firms in this market do not use any resources that are available only in limited quantities. In this market, an increase in demand will
+
+	a. increase price both in the short and the long run.	
+	b. increase price in the short run but not in the long run.	
+	c. increase price in the long run but not in the short run.	
+	d. not affect price in either the short or the long run.
+		
+14.A competitive market is in long-run equilibrium. If demand decreases, we can be certain that price will
+
+	a. fall in the short run. All firms will shut down, and some of them will exit the industry. Price will then rise to reach the new long-run equilibrium.	
+	b. fall in the short run. All, some, or no firms will shut down, and some of them will exit the industry. Price will then rise to reach the new long-run equilibrium.	
+	c. not fall in the short run because firms will exit to maintain the price.	
+	d. fall in the short run. No firms will shut down, but some of them will exit the industry. Price will then rise to reach the new long-run equilibrium.
+15.When firms are said to be price takers, it implies that if a firm raises its price,
+
+	a. competitors will also raise their prices.	
+	b. buyers will pay the higher price in the short run.	
+	c. firms in the industry will exercise market power.	
+	d. buyers will go elsewhere.	
+16.Which of the following firms is the closest to being a perfectly competitive firm?
+
+	a. A grain farmer in Illinois	
+	b. Ford Motor Company	
+	c. Microsoft Corporation	
+	d. The campus bookstore
+17.If a firm in a perfectly competitive market triples the quantity of output sold, then total revenue will
+
+	a. more than triple.	
+	b. less than triple.	
+	c. exactly triple.	
+	d. be reduced by one third.	
+18.Whenever a perfectly competitive firm chooses to change its level of output, its marginal revenue
+
+	a. increases if MR < ATC and decreases if MR > ATC.	
+	b. always  decreases.	
+	c. does not change.	
+	d. always  increases.
+19.Farmer McDonald sells wheat to a broker in Kansas City, Missouri. Because the market for wheat is generally considered to be competitive, Mr. McDonald maximizes his profit by choosing
+
+	a. to produce the quantity at which average fixed cost is minimized.	
+	b. the quantity at which market price is equal to Mr. McDonald's marginal cost of production.	
+	c. to produce the quantity at which average variable cost is minimized.	
+	d. the quantity at which market price exceeds Mr. McDonald's marginal cost of production by the greatest amount.
+20.Which of the following statements is true?
+
+	a. Average revenue is the same as price for competitive firms but not monopoly firms.	
+	b. Average revenue is the same as price for monopoly firms but not competitive firms.	
+	c. When a monopoly firm sells an additional unit of output, its revenue increases by an amount less than the price.	
+	d. When a competitive firm sells an additional unit of output, its revenue increases by an amount less than the price.
+21.The deadweight loss associated with a monopoly occurs because the monopolist
+
+	a. equates marginal revenue with marginal cost.	
+	b. produces an output level less than the socially optimal level.	
+	c. maximizes profits.	
+	d. produces an output level greater than the socially optimal level.
+22.To maximize total surplus with a monopoly firm, a benevolent social planner would choose the level of output where
+
+	a. MR = MC.	
+	b. MR intersects the demand curve.	
+	c. MR exceeds MC by the greatest amount.	
+	d. MC intersects the demand curve.	
+23.Price discrimination is the business practice of
+
+	a. selling the same good at different prices to different customers.	
+	b. hiring marketing experts to increase consumers' brand loyalty.	
+	c. bundling related products to increase total sales.	
+	d. pricing above marginal cost.	
+24.A monopolist's profits with price discrimination will be
+
+	a. lower than if the firm charged a single, profit-maximizing price.	
+	b. the same as if the firm charged a single, profit-maximizing price.	
+	c. higher than if the firm charged a single price because the costs of selling the good will be lower.	
+	d. higher than if the firm charged just one price because the firm will capture more consumer surplus.
+25.Price discrimination is a rational strategy for a profit-maximizing monopolist when
+
+	a. the monopolist finds itself able to produce only limited quantities of output.	
+	b. consumers are unable to be segmented into identifiable markets.	
+	c. there is no opportunity for arbitrage across market segments.	
+	d. the monopolist wishes to increase the deadweight loss that results from profit-maximizing behavior.
+26.Which of the following governmental actions would eliminate some or all of the inefficiency that results from monopoly pricing?
+
+	a. There is nothing the government can do to eliminate any inefficiency associated with a monopoly.	
+	b. Prohibit the monopoly from price discriminating.	
+	c. Policymakers can regulate prices that the monopoly charges. 	
+	d. Force the monopoly to operate at a point where its marginal revenue is equal to its marginal cost.
+27.A monopoly can earn positive profits because it
+
+	a. can sell unlimited quantities at any price it chooses.	
+	b. can set the price it charges for its output but faces a horizontal demand curve.	
+	c. takes the market price as given and can sell unlimited quantities.	
+	d. can maintain a price such that total revenues will exceed total costs.
+28.The fundamental source of monopoly power is
+
+	a. a product without close substitutes.	
+	b. barriers to entry.	
+	c. profit.	
+	d. increasing average total cost.
+29.A natural monopoly occurs when
+
+	a. there are economies of scale over the relevant range of output.	
+	b. the firm is characterized by a rising marginal cost curve.	
+	c. the product is sold in its natural state, such as water or diamonds.	
+	d. production requires the use of free natural resources, such as water or air.	
+30.Monopoly firms face
+
+	a. downward-sloping demand curves, so they can sell as much output as they desire at the market price.	
+	b. horizontal demand curves, so they can sell only a limited quantity of output at each price.	
+	c. horizontal demand curves, so they can sell as much output as they desire at the market price.	
+	d. downward-sloping demand curves, so they can sell only the specific price-quantity combinations that lie on the demand curve.
+
+31.The profit-maximization problem for a monopolist differs from that of a competitive firm in which of the following ways?
+
+	a. For a profit-maximizing competitive firm, thinking at the margin is much more important than it is for a profit-maximizing monopolist.	
+	b. For a competitive firm, marginal revenue at the profit-maximizing level of output is equal to marginal revenue at all other levels of output; for a monopolist, marginal revenue at the profit-maximizing level of output is smaller than it is for larger levels of output.	
+	c. A competitive firm maximizes profit at the point where average revenue equals marginal cost; a monopolist maximizes profit at the point where average revenue exceeds marginal cost.	
+	d. A competitive firm maximizes profit at the point where marginal revenue equals marginal cost; a monopolist maximizes profit at the point where marginal revenue exceeds marginal cost.
+32.If a profit-maximizing monopolist faces a downward-sloping market demand curve, its
+
+	a. average revenue is less than the price of the product.	
+	b. marginal revenue is less than the price of the product.	
+	c. average revenue is less than marginal revenue.	
+	d. marginal revenue is greater than the price of the product.	
+33.The two types of imperfectly competitive markets are
+
+	a. monopolistic competition and cartels.	
+	b. monopoly and monopolistic competition.	
+	c. monopolistic competition and oligopoly.	
+	d. monopoly and oligopoly.
+34.Which of the following statements is not correct?
+
+	a. Monopolistic competition is different from monopoly because monopolistic competition is characterized by free entry, whereas monopoly is characterized by barriers to entry.	
+	b. Both monopolistic competition and oligopoly fall in between the more extreme market structures of competition and monopoly.	
+	c. Both monopolistic competition and perfect competition are characterized by product differentiation.	
+	d. Monopolistic competition is different from oligopoly because each seller in monopolistic competition is small relative to the market, whereas each seller can affect the actions of other sellers in an oligopoly.
+35.A market structure with only a few sellers, each offering similar or identical products, is known as
+
+	a. oligopoly.	
+	b. monopoly.	
+	c. monopolistic competition.	
+	d. perfect competition.	
+36.Which of the following is unique to a monopolistically competitive firm when compared to an oligopoly?
+
+	a. The monopolistically competitive firm produces a quantity of output that falls short of the socially optimal level.	
+	b. Monopolistic competition features many buyers.	
+	c. The monopolistically competitive firm advertises.	
+	d. Monopolistic competition features many sellers.
+37.Which of the following statements is correct?
+
+	a. Monopolistic competition is similar to oligopoly because both market structures are characterized by strategic interaction between firms in the market.	
+	b. Monopolistic competition is similar to perfect competition because both market structures are characterized by perfectly elastic demand curves facing each firm.	
+	c. Monopolistic competition is similar to monopoly because both market structures are characterized by firms being price makers rather than price takers.	
+	d. Monopolistic competition is similar to perfect competition because both market structures are characterized by differentiated products.
+38.In both perfect competition and monopolistic competition, each firm
+
+	a. has some monopoly power.	
+	b. faces a downward-sloping demand curve for its product.	
+	c. has many competitors.	
+	d. sells a product that is at least slightly different from those of other firms.
+39.A similarity between monopoly and monopolistic competition is that in both market structures
+
+	a. there are only a few buyers but many sellers.	
+	b. there are a small number of sellers.	
+	c. strategic interactions among sellers are important.	
+	d. sellers are price makers rather than price takers.	
+40.Which of the following conditions is characteristic of a monopolistically competitive firm in short-run equilibrium?
+
+	a. P < MC	
+	b. MR < MC	
+	c. P = AR	
+	d. MR > MC
+41.Which of the following conditions is characteristic of a monopolistically competitive firm in both the short run and the long run?
+
+	a. P < MR	
+	b. P = ATC	
+	c. MC = ATC	
+	d. P > MC
+42.Which of the following is not a key feature of monopolistic competition?
+
+	a. Excess capacity	
+	b. Positive economic profits for firms in the long run	
+	c. A markup of price over marginal cost	
+	d. Differentiated products among firms in the market
+43.The equilibrium quantity in markets characterized by oligopoly is
+
+	a. lower than in monopoly markets and lower than in perfectly competitive markets.	
+	b. higher than in monopoly markets and lower than in perfectly competitive markets.	
+	c. lower than in monopoly markets and higher than in perfectly competitive markets.	
+	d. higher than in monopoly markets and higher than in perfectly competitive markets.
+44.In the prisoners' dilemma game, self-interest leads
+
+	a. to an outcome that is better for both prisoners.	
+	b. to the follow-through of any agreement that the prisoners might have made before being questioned.	
+	c. each prisoner to stay silent.	
+	d. each prisoner to confess.
+45.Two suspected drug dealers are stopped by the highway patrol for speeding. The officer searches the car and finds a small bag of marijuana and arrests the two. During the interrogation, each is separately offered the following: "If you confess to dealing drugs and testify against your partner, you will be given immunity and released while your partner will get 10 years in prison. If you both confess, you will each get 5 years." If neither confesses, there is no evidence of drug dealing, and the most they could get is one year each for possession of marijuana. If each suspected drug dealer follows a dominant strategy, what should he/she do?
+
+	a. Confess regardless of the partner's decision	
+	b. Don't confess only if the partner doesn't confess	
+	c. Confess only if the partner confesses	
+	d. Don't confess regardless of the partner's decision	
+46.In a prisoners' dilemma game,
+
+	a. repeated play will result in a worse outcome for both players than when the game is played only once.	
+	b. the tit-for-tat strategy in repeated play requires players to always select the opposite strategy as their opponent.	
+	c. if the players play the game repeatedly, the players can achieve a higher payoff, on average, than when they play the game only once.	
+	d. the solution when playing the game once will be the same as the solution when the players play the game repeatedly, since agreements cannot be maintained in a prisoners' dilemma.
+47.Which of the following statements is correct?
+
+	a. If duopolists successfully collude, then their combined output will be equal to the output that would be observed if the market were a monopoly.	
+	b. The logic of self-interest increases a duopoly's level of output above the monopoly level, and it pushes the duopolists to reach the competitive price.	
+	c. If duopolists successfully collude, then their combined output will be less than the output that would be observed if the market were a monopoly.	
+	d. The logic of self-interest decreases a duopoly's price below the monopoly price, and it pushes the duopolists to reach the competitive level of output.
+48.A budget constraint illustrates the
+
+	a. consumption bundles that give a consumer equal satisfaction.	
+	b. purchases made by consumers.	
+	c. prices that a consumer chooses to pay for products he consumes.	
+	d. consumption bundles that a consumer can afford.
+49.On a graph we draw a consumer's budget constraint, measuring the number of pineapples on the horizontal axis and the number of pencils on the vertical axis. If the slope of the budget constraint is -6, then
+
+	a. a pineapple costs six times as much as a pencil.	
+	b. the opportunity cost of a pencil is six pineapples.	
+	c. the opportunity cost of a pineapple is one-sixth of a pencil.	
+	d. a pencil costs six times as much as a pineapple.	
+50.Indifference curves illustrate
+
+	a. a consumer's budget.	
+	b. a firm's profits.	
+	c. the prices of two goods.	
+	d. a consumer's preferences.	
+51.All of the following are properties of typical indifference curves except
+
+	a. higher indifference curves are preferred to lower ones.	
+	b. indifference curves are bowed outward.	
+	c. indifference curves are downward sloping.	
+	d. indifference curves do not cross.
+52.Suppose Jamie can choose between consuming two goods. If we observe that Jamie's budget constraint has moved outward, then we know for certain that
+
+	a. she can reach a higher indifference curve.	
+	b. she will be indifferent between the two goods.	
+	c. her income must have increased.	
+	d. the price of one or both of the goods must have decreased.
+53.Suppose William can choose between the consumption of two goods. If we observe that William's budget constraint has moved inward, then we know for certain that
+
+	a. he will be indifferent between the two goods.	
+	b. his utility will decrease.	
+	c. the price of one or both of the goods must have increased.	
+	d. his income must have decreased.	

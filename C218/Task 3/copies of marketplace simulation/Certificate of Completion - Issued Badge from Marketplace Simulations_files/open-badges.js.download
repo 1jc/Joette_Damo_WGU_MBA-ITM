@@ -1,0 +1,18 @@
+
+var OpenBadges =
+{
+  messageDialog: null,
+  copyToClipBoard: function () {
+    var copyText = document.querySelector("#assertionURL");
+    navigator.clipboard.writeText(copyText.value);
+    var winContent = '<div class="messageDialog" aria-live="polite"><img src="templates/imgs/open-badges/dd-credential-url-copy.png" alt="" style="margin:18px"> <span>'+JSStrings.tc('openbadges:copyMessage')+'</span><button class="closeBtn" aria-label="'+JSStrings.tc('openbadges:closeBtn')+'">X</button></div>';
+    this.messageDialog = new AlertOverlay('popupDialog', winContent, [], 'absolute', '60');
+    this.messageDialog.show();
+    $('.closeBtn').click(function(){OpenBadges.messageDialog.destroy();});
+    setTimeout(function(){OpenBadges.messageDialog.destroy();}, 2500);
+  },
+  getOpenBageData: function (url)
+  {
+    window.location.href = url;
+  }
+}

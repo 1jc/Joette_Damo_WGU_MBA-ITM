@@ -1,0 +1,4 @@
+if (typeof(Live) == 'undefined') {
+  document.cookie = 'CDNOFF=1;path=/';
+  document.location.reload(true);
+}

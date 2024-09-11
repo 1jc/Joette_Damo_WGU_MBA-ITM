@@ -1,0 +1,112 @@
+1.Equilibrium quantity must decrease when demand
+
+	a. increases and supply does not change, when demand does not change and supply decreases, and when both demand and supply decrease.	
+	b. decreases and supply does not change, when demand does not change and supply increases, and when both demand and supply decrease.	
+	c. decreases and supply does not change, when demand does not change and supply decreases, and when both demand and supply decrease.	
+	d. increases and supply does not change, when demand does not change and supply increases, and when both demand and supply decrease.
+2.Equilibrium price must decrease when demand
+
+	a. decreases and supply does not change, when demand does not change and supply increases, and when demand increases and supply decreases simultaneously.	
+	b. increases and supply does not change, when demand does not change and supply decreases, and when demand increases and supply decreases simultaneously.	
+	c. decreases and supply does not change, when demand does not change and supply increases, and when demand decreases and supply increases simultaneously.	
+	d. increases and supply does not change, when demand does not change and supply decreases, and when demand decreases and supply increases simultaneously.
+3.If the demand for a product increases, then we would expect equilibrium price
+
+	a. to decrease and equilibrium quantity to increase.	
+	b. and equilibrium quantity both to decrease.	
+	c. to increase and equilibrium quantity to decrease.	
+	d. and equilibrium quantity both to increase.	
+4.If the supply of a product increases, then we would expect equilibrium price
+
+	a. to decrease and equilibrium quantity to increase.	
+	b. and equilibrium quantity to both increase.	
+	c. to increase and equilibrium quantity to decrease.	
+	d. and equilibrium quantity to both decrease.
+5.Suppose that demand for a good increases and, at the same time, supply of the good decreases. What would happen in the market for the good?
+
+	a. Equilibrium price would decrease, but the impact on equilibrium quantity would be ambiguous.	
+	b. Equilibrium quantity would decrease, but the impact on equilibrium price would be ambiguous.	
+	c. Equilibrium quantity would increase, but the impact on equilibrium price would be ambiguous.	
+	d. Equilibrium price would increase, but the impact on equilibrium quantity would be ambiguous.
+6.Elasticity of demand is closely related to the slope of the demand curve. The more responsive buyers are to a change in price, the
+
+	a. closer to the vertical axis the demand curve will sit.	
+	b. flatter the demand curve will be.	
+	c. steeper the demand curve will be.	
+	d. further to the right the demand curve will sit.
+7.Cross-price elasticity of demand measures how
+
+	a. the quantity demanded of one good changes in response to a change in the price of another good.	
+	b. the quantity demanded of one good changes in response to a change in the quantity demanded of another good.	
+	c. strongly normal or inferior a good is.	
+	d. the price of one good changes in response to a change in the price of another good.
+8.If the cross-price elasticity of two goods is negative, then the two goods are
+
+	a. inferior goods.	
+	b. normal goods.	
+	c. complements.	
+	d. necessities.	
+9.The price elasticity of supply measures how much
+
+	a. the price of the good responds to changes in supply.	
+	b. sellers respond to changes in technology.	
+	c. the quantity supplied responds to changes in the price of the good.	
+	d. the quantity supplied responds to changes in input prices.
+10.A key determinant of the price elasticity of supply is the
+
+	a. price elasticity of demand.	
+	b. income of consumers.	
+	c. time horizon.	
+	d. importance of the good in a consumer’s budget.
+11.The price elasticity of demand measures
+
+	a. the movement along a supply curve when there is a change in demand.	
+	b. how much more of a good consumers will demand when incomes rise.	
+	c. buyers' responsiveness to a change in the price of a good.	
+	d. the extent to which demand increases as additional buyers enter the market.
+12.Which of the following is not a determinant of the price elasticity of demand for a good?
+
+	a. The time horizon	
+	b. The definition of the market for the good	
+	c. The steepness or flatness of the supply curve for the good	
+	d. The availability of substitutes for the good
+13.If the price of walnuts rises, many people would switch from consuming walnuts to consuming pecans. But if the price of salt rises, people would have difficulty purchasing something to use in its place. These examples illustrate the importance of
+
+	a. a necessity versus a luxury in determining the price elasticity of demand.	
+	b. the definition of a market in determining the price elasticity of demand.	
+	c. the availability of close substitutes in determining the price elasticity of demand.	
+	d. the time horizon in determining the price elasticity of demand.
+14.Which of the following is NOT an example of monetary policy?
+	a. The Federal Reserve reduces the reserve requirement.	
+	b. The Federal Open Market Committee decides to buy bonds.	
+	c. The Federal Open Market Committee decides to sell bonds.	
+	d. The Federal Reserve facilitates bank transactions by clearing checks.
+15.The discount rate is
+
+	a. the interest rate the Fed charges banks.	
+	b. the interest rate banks receive on reserve deposits with the Fed.	
+	c. the interest rate that banks charge on overnight loans to other banks.	
+	d. one divided by the difference between one and the reserve ratio.
+16.When the Fed decreases the discount rate, banks will
+
+	a. borrow less from the Fed and lend less to the public. The money supply decreases.	
+	b. borrow more from the Fed and lend more to the public. The money supply increases.	
+	c. borrow less from the Fed and lend more to the public. The money supply increases.	
+	d. borrow more from the Fed and lend less to the public. The money supply decreases.
+17.Which of the following both increase the money supply?
+
+	a. An increase in the discount rate and an increase in the interest rate on reserves	
+	b. An increase in the discount rate and a decrease in the interest rate on reserves	
+	c. A decrease in the discount rate and a decrease in the interest rate on reserves	
+	d. A decrease in the discount rate and an increase in the interest rate on reserves
+18.Other things the same, if reserve requirements are increased, the reserve ratio
+
+	a. decreases, the money multiplier decreases, and the money supply increases.	
+	b. increases, the money multiplier increases, and the money supply increases.	
+	c. increases, the money multiplier decreases, and the money supply decreases.	
+	d. decreases, the money multiplier increases, and the money supply increases.
+19.Which of the following policies can the Fed follow to increase the money supply?
+	a. ​ Reduce the quantity of funds available through the Term Auction Facility	
+	b. ​ Increase reserve requirements for banks	
+	c. ​ Sell government bonds	
+	d. ​ Reduce the interest rate on reserves	

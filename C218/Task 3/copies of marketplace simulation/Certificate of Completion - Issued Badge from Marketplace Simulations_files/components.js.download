@@ -1,0 +1,999 @@
+var UICom = function(id, params, value)
+{
+  var p,
+      defaults = 
+      {
+        label: '',
+        type: 'text',
+        dataType: 'string', //string, number
+        required: false,
+        disabled: false,
+        style:'',
+        min: null,
+        max: null,
+        options: [],
+        optValue: '',
+        optName: '',
+        addEmpty:false,
+        emptyValue: '',
+        emptyName:'---',
+        errMsg:'',
+        hiddenLabel: false,
+        placeholder: '',
+        checked: false
+      };
+  
+  p = $.extend(defaults, params);
+  this.element = $('#'+id);
+
+  if (this.element.length == 0)
+  {
+    value = value || p.emptyValue;
+    switch (p.type)
+    {
+      case 'select':
+        cmp = '<select name="'+id+'" id="'+id+'">'+(p.required?(p.addEmpty==false?'':'<option value="'+p.emptyValue+'">'+p.emptyName+'</options>'):'<option value="'+p.emptyValue+'">'+p.emptyName+'</options>');
+        for(var i = 0, length = p.options.length; i<length; ++i)
+          cmp += '<option value="'+p.options[i][p.optValue]+'" '+(value == p.options[i][p.optValue]?'selected="selected"':'')+'>'+p.options[i][p.optName]+'</option>';
+        cmp += '</select>';
+      break;
+      case 'radio':
+        cmp = '<table style="width: 100%;" id="'+id+'">';
+        for(var i = 0, length = p.options.length; i<length; ++i)
+          cmp += '<tr><td id="'+id+'_'+i+'_label">'+p.options[i][p.optName]+'</td><td align="right"><input type="radio" id="'+id+'_'+i+'" name="'+id+'" value="'+p.options[i][p.optName]+'" aria-labelledby="'+id+'_label '+id+'_'+i+'_label" /></td></tr>';
+        cmp += '</table>';
+      break;
+      case 'textarea':
+        cmp = '<textarea name="'+id+'" id="'+id+'" rows="'+p.rows+'" placeholder="'+p.placeholder+'" wrap="auto">'+value+'</textarea>'
+      break;
+      case 'plainText':
+        cmp = '<span class="'+p.style+'" id="'+id+'">'+value+'</span>';
+      break;
+      case 'checkbox':
+        cmp = '<input type="'+p.type+'" name="'+id+'" id="'+id+'" value="'+value+'" '+((p.disabled)?'disabled':'')+'  '+((p.checked)?'checked':'')+'/>';
+      break;
+      default:
+        cmp = '<input type="'+p.type+'" name="'+id+'" id="'+id+'" value="'+value+'" '+((p.disabled)?'disabled':'')+'/>';
+      break;
+    }
+    this.element = $(cmp);
+    this.element.wrap('<div class="labeledEdit">');
+    if (p.label) {
+      if (p.hiddenLabel)
+        this.element.attr('aria-label', p.label);
+      else
+        this.element.before('<label for="'+id+'" id="'+id+'_label">'+p.label+'</label>');
+    }
+    if(p.required===true)
+    {
+      this.on('focusin', $.proxy(function()
+        {
+          this.removeError();
+        }, this));
+      this.on('blur', $.proxy(function()
+        {
+          if(this.checkEmpty()) this.addError(JSStrings.tc(p.errMsg, {FIELD:p.label}));
+        }, this));
+      
+      this.element.attr('aria-required', 'true');
+    }
+
+  }
+  this.params = p;
+  this.wrap = this.element.parent();
+
+  if (!p.keepErrorOnCreate) {
+    this.removeError();
+  }
+};
+
+$.extend(UICom.prototype, 
+{
+  update: function(params)
+  {
+    if (this.params.type == 'select')
+    {
+      if (typeof(params.options) != 'undefined')
+      {  
+        this.params.options = params.options;
+        var p = this.params, 
+            cmp = p.required?'':'<option value="'+p.emptyValue+'">'+p.emptyName+'</options>';
+        for(var i = 0, length = p.options.length; i<length; ++i)
+          cmp += '<option value="'+p.options[i][p.optValue]+'">'+p.options[i][p.optName]+'</option>';
+        this.element.html(cmp);
+      }
+    }
+  },
+  
+  checkEmpty: function()
+  {
+    return $.trim(this.val()) == '';    
+  },
+  
+  checkDataType: function()
+  {
+    if (this.params.dataType == 'number') return $.isNumeric(this.val());
+    return true;
+  },
+  
+  checkLimits: function()
+  {
+    var v = this.val(), p = this.params;
+    if (p.dataType == 'string') v = this.val().length;
+    
+    if (p.min != null && v < p.min) return false;
+    if (p.max != null && v > p.max) return false;
+    
+    return true;
+  },
+  
+  check: function()
+  {
+    
+  },
+  
+  addError: function(message)
+  {
+    this.removeError();
+    this.wrap.append('<span class="inputError" role="alert">'+message+'</span>');
+    this.element.addClass('inputError');
+  },
+  
+  removeError: function()
+  {
+    $('span.inputError', this.wrap).remove();
+    this.element.removeClass('inputError');
+  },
+
+  val: function( value) 
+  { 
+    if (typeof(value) == 'undefined')
+    {
+      if(this.params.type == 'checkbox' )
+     {
+       return this.element.is(':checked') ? 1: 0;
+     }
+     else if(this.params.type == 'radio' )
+     {
+        for(var i=0; i < $('input[name='+this.id()+']').length; i++)
+        {
+          if($('input[name='+this.id()+']')[i].checked==true) return $('input[name='+this.id()+']')[i].value;
+        }
+     }
+     else
+          return this.element.val();
+    }
+    else
+      return this.element.val(value); 
+  },  
+  
+  id: function()
+  {
+    return this.element.attr('id');
+  }, 
+  
+  on: function(event, handler) 
+  { 
+    return this.element.on(event, handler); 
+  }
+});
+var Format = 
+{
+  number: function( value, decimal, decimalDelimiter, thousandDelimiter)
+  {
+    var nm = '', num;
+    decimal = decimal || 0;
+    decimalDelimiter = decimalDelimiter || '.';
+    thousandDelimiter = thousandDelimiter = ',';
+
+    var p = 1, v, a;
+    if (decimal > 0)
+    {
+      p = Math.pow(10, decimal);
+      v = Math.round(value*p)/p;
+    }
+    else v = Math.round(value);
+    a = Math.abs(v);
+    
+    if (decimal > 0)
+    {
+      var f = Math.floor(a);
+      nm = decimalDelimiter+(p+Math.round((a-f) * p)).toString().substr(1);
+      num = f.toString();
+    }
+    else num = a.toString();
+    
+    var st = num.length-3;
+    while (st > 0)
+    {
+      nm = thousandDelimiter+num.substr(st, 3)+nm;
+      st -= 3;
+    }
+    return (v<0?'-':'')+num.substr(0, st+3)+nm;
+  },
+  
+  integer: function( value, thousandDelimiter)
+  {
+    return this.number( value, 0, '', thousandDelimiter);
+  },
+  
+  real: function( value, decimal, decimalDelimiter, thousandDelimiter)
+  {
+    return this.number( value, decimal, decimalDelimiter, thousandDelimiter);
+  },
+  
+  fullName: function( last, first, middle)
+  {
+    var res = last;
+    res += first ? ', ' + first : '';
+    res += middle ? ' ' + middle : '';
+    return res;
+  },
+
+  initialName: function( last, first, middle)
+  {
+    return last + (first ? ', ' + first.charAt(0) + '.': '') + (middle ? ' ' + middle.charAt(0) + '.': '');
+  },
+
+  rdFeatureName: function( groupName, featureName, addition, excludeDelimiter)
+  {
+    addition = ( addition || '').strip(); 
+    return ( groupName+( ( excludeDelimiter || false)?'':': ')+( featureName || '').strip()+( addition != ''?' ('+addition+')':''));
+  },
+
+  location: function( cityName, regionName)
+  {
+    return cityName+(( regionName != '')?', '+regionName:'');
+  },
+
+  soapLongDate: function( date, dateNotAvailable)
+  {
+    if( typeof( dateNotAvailable) != 'undefined' && date.substr( 0, 19) == '0000-00-00T00:00:00') return dateNotAvailable;
+    return date.replace('T',' ').substr(0, 19);
+  },
+  
+  soapShortDate: function(date)
+  {
+    var fullDate = date.replace('T',' ').substr(0, 19);
+    return fullDate; //.replace(/-/gi,'/').substr(5, 19);
+  },
+  
+  duration: function(seconds, showSeconds)
+  {
+    var m = Math.floor(seconds/60), s = seconds % 60, showSeconds = showSeconds || false;
+    if (showSeconds) return this.number(m)+':'+(s<10?'0':'')+s;
+    return this.number(m);
+  },
+  
+  tzOffset: function(offset)
+  {
+    var a = Math.abs(offset), h = Math.floor(a/60), m = a - h*60;
+    return 'GMT '+((offset < 0)?'-':'+') + ((h < 10)?'0':'')+h+':'+((m < 10)?'0':'')+m+'';
+  }
+};
+
+var DropDownStatic = Class.extend({
+//  align: 'left',    //left, center, right
+//  valign: 'bottom', //top, bottom
+  padding: 0,
+
+  prefix: 'dd',
+
+  style: '',
+  opacity: Live.opacity,
+
+  ctrlTimeout: 250,
+  ddTimeout: 500,
+
+  mouseOver: true,
+  isDelayed: false,
+
+  wasClicked: false,
+
+  init: function( id, prefix, align, valign, style, contentElement, altParent, mouseOver)
+  {
+    this.idArr = Array.isArray( id)?id:[id];
+
+    this.jElement = $();
+    for( var i=0,ii=this.idArr.length; i<ii; ++i)
+    {
+      if (typeof(this.idArr[i]) == 'string')
+        this.jElement = this.jElement.add('#'+this.idArr[i]);
+      else
+        this.jElement = this.jElement.add(this.idArr[i]);
+    }
+
+    this.altParent = altParent;
+    this.dh = null;
+    this.isOn = false;
+    this.canHide = true;
+    this.element = this.jElement.first(); //Array.isArray( id)?$('#'+this.idArr[0]):$(this.idArr[0]);
+    this.valign = valign || 'bottom';
+    this.align = align || 'left';
+    this.prefix = prefix || 'dd';
+    this.style = style || '';
+    if (contentElement instanceof jQuery) {
+      this.contentElement = contentElement;
+    } else {
+      this.contentElement = contentElement ? $('#' + contentElement) : $('body');
+    }
+    this.documentElement = $(document);
+
+    this.mouseOver = typeof(mouseOver) == 'undefined' || mouseOver;
+
+    this.events = this.getEvents();
+    this.ddEvents = this.getDDEvents();
+
+    this.wasClicked = false;
+
+    this.observe();
+    this.enable();
+
+    this.drawInBody = false;
+  },
+
+  getEvents: function()
+  {
+    return {
+      keydown: $.proxy(function(e) {
+        if (e.keyCode == 13 || e.keyCode == 32 || e.keyCode == 40) {
+          e.preventDefault();
+          this.toggle(true);
+        }
+      }, this),
+
+      click: $.proxy(function(e) {
+        var toggle = (!(this.mouseOver && this.isOn) || this.wasClicked);
+        this.wasClicked = true;
+        if (toggle) {
+          this.toggle(true);
+        }
+        e.stopPropagation();
+      }, this),
+
+      mouseover: $.proxy(function(e) {
+        if (!this.mouseOver || this.wasClicked) return;
+        this.show(false);
+      }, this),
+
+      mouseout: $.proxy(function(e) {
+        if (!this.mouseOver || this.wasClicked) return;
+        if (this.isDelayed) {
+          this.delayedHide();
+        } else {
+          this.hide();
+        }
+      }, this)
+    };
+  },
+
+  getDDEvents: function()
+  {
+    return {
+      mouseover: $.proxy(function(e) {
+        if (!this.mouseOver || this.wasClicked) return;
+        this.setOverDD();
+      }, this),
+
+      mouseout: $.proxy(function(e) {
+        if (!this.mouseOver || this.wasClicked) return;
+        this.setOutDD();
+      }, this),
+
+      documentClick: $.proxy(function(e) {
+        if (this.mouseOver && !this.wasClicked) return;
+        var target = $(e.target);
+        if (target.closest(this.ddElement()).length == 0 &&
+            target.closest('[id="' + this.element[0].id + '"]').length == 0 && target[0] != this.element[0]) {
+          this.hide();
+        } else {
+          $(document).one('click', this.ddEvents.documentClick);
+        }
+      }, this),
+
+      blur: $.proxy(function(e) {
+        if ($(e.relatedTarget).closest(this.ddElement()).length == 0) {
+          if (this.drawInBody) {
+            this.element.focus();
+          }
+          this.hide();
+        }
+      }, this)
+    };
+  },
+
+  enable: function ()
+  {
+    this.enabled = true;
+  },
+
+  disable: function()
+  {
+    this.enabled = false;
+  },
+
+  ddElement: function() {
+    if(typeof(this.ddEle) != 'undefined')
+      return this.ddEle;
+    return false;
+  },
+
+  observe: function()
+  {
+    this.jElement.on( 'keydown', this.events.keydown);
+    this.jElement.on( 'click', this.events.click);
+    this.jElement.on( 'mouseover', this.events.mouseover);
+    this.jElement.on( 'mouseout', this.events.mouseout);
+  },
+
+  observeDD: function()
+  {
+    this.ddElement()
+      .on( 'mouseover', this.ddEvents.mouseover)
+      .on( 'mouseout', this.ddEvents.mouseout)
+      .on( 'focusout', this.ddEvents.blur);
+
+    this.canHide = true;
+    this.observeContent();
+  },
+
+  reset: function()
+  {
+    this.ddEle = $(this.draw());
+    this.ddEle.css('position', 'fixed');
+    if (this.drawInBody)
+      this.contentElement.append(this.ddEle);
+    else
+      this.element.after(this.ddEle);
+  },
+
+  getLeft: function(align, left, width, ddWidth)
+  {
+    switch (align)
+    {
+      case 'center': return left + (width - ddWidth)/2 - this.documentElement.scrollLeft();
+      case 'right': return left + width - ddWidth - this.documentElement.scrollLeft();
+      default: return left - this.documentElement.scrollLeft();
+    }
+  },
+
+  getTop: function(valign, top, height, ddHeight, containerHeight)
+  {
+    switch (valign)
+    {
+      case 'top': return top - ddHeight - this.padding - this.documentElement.scrollTop();
+      default:
+//            if((top + ddHeight + this.padding ) > containerHeight)
+//              return top - ddHeight - this.padding;
+//            else
+          return top + height + this.padding - this.documentElement.scrollTop();
+    }
+  },
+
+  positionDropDownElement: function()
+  {
+    var dd = this.ddElement(), e = this.element, eOffset = e.offset(), c = this.contentElement, cOffset = c.offset(),
+      left, right, top, bottom, i,
+      aligns = [this.align, 'left', 'right', 'center', this.align],
+      verticalAligns = [this.valign, 'bottom', 'top', this.valign],
+      ddDimensions = {width: dd.outerWidth(true), height: dd.outerHeight(true)},
+      eDimensions = {width: e.outerWidth(), height: e.outerHeight()},
+      container = {
+        left: cOffset.left,
+        right: cOffset.left + c.width(),
+        top: cOffset.top,
+        bottom: cOffset.top + c.height() - this.documentElement.scrollTop()
+      };
+
+    i = 0;
+    do {
+      left = this.getLeft(aligns[i], eOffset.left, eDimensions.width, ddDimensions.width);
+      right = left + ddDimensions.width;
+      if (left > container.left && right < container.right) {
+        break;
+      }
+      i++;
+    } while (i < aligns.length);
+
+    i = 0;
+    do {
+      top = this.getTop(verticalAligns[i], eOffset.top, eDimensions.height, ddDimensions.height);
+      bottom = top + ddDimensions.height;
+      if (top > container.top && bottom < container.bottom) {
+        break;
+      }
+      i++;
+    } while (i < verticalAligns.length);
+
+    dd.css({'top': top, 'left': left});
+  },
+
+  restrictDropDownElementHeight: function()
+  {
+  },
+
+  show: function( focus)
+  {
+    if ( this.dh != null ) clearTimeout ( this.dh);
+    if ( !this.enabled) return;
+    if ( !this.isOn )
+    {
+      this.wasClicked = false;
+      this.reset();
+      this.isOn = true;
+      this.canHide = true;
+      this.ddElement().show();
+      this.positionDropDownElement();
+      this.restrictDropDownElementHeight();
+      this.observeDD();
+      $('.dropDownOpen').each(function() {
+        $(this).data('dropDownObject').hide();
+      });
+      this.element.data('dropDownObject', this);
+      this.element.toggleClass('dropDownOpen', true);
+      this.element.toggleClass('tb-btn-active', true);
+      this.onShow();
+
+      if (focus && this.ddElement().is(':focusable'))
+        this.ddElement().focus();
+
+      $(document).one( 'click', this.ddEvents.documentClick);
+    }
+
+  },
+
+  hide: function()
+  {
+    if ( this.isOn && this.canHide )
+    {
+      this.wasClicked = false;
+      this.element.toggleClass('dropDownOpen', false);
+      this.element.toggleClass('tb-btn-active', false);
+      this.isOn = false;
+      this.canHide = true;
+      var dd = this.ddElement();
+      if (dd != null ) dd.remove();
+      this.onHide();
+
+      $(document).off( 'click', this.ddEvents.documentClick);
+    }
+  },
+
+  toggle: function(focus)
+  {
+    if (this.isOn) this.hide(); else this.show(focus);
+  },
+
+  delayedHide: function( event)
+  {
+    if ( this.dh != null ) clearTimeout ( this.dh);
+    this.dh = setTimeout( this.hide.bind( this), this.ctrlTimeout);
+  },
+
+  setOverDD: function()
+  {
+    clearTimeout( this.dh);
+    this.canHide = false;
+  },
+
+  setOutDD: function( event)
+  {
+    this.canHide = true;
+    if ( this.dh != null ) clearTimeout ( this.dh);
+    this.dh = setTimeout( this.hide.bind( this), this.ddTimeout);
+  },
+
+  draw: function()
+  {
+    return '<div id="dd-'+this.element[0].id+'" class="'+this.prefix+'-'+this.style+'" style="position:absolute; z-index: 99; display:none;">' + this.drawContent() + '</div>';
+  },
+
+  drawContent: function()
+  {
+    return '';
+  },
+
+  observeContent: function()
+  {
+  },
+
+  onHide: function()
+  {
+
+  },
+
+  onShow: function()
+  {
+
+  },
+
+  update: function()
+  {
+    this.canHide = true;
+    this.hide();
+  },
+
+  destroy: function()
+  {
+    this.canHide = true;
+    this.hide();
+  }
+});
+
+var DropDownStaticExplanation = DropDownStatic.extend(
+{
+  padding: 2,
+  
+  init: function(id, title, shortDesc, longDesc, style, contentElement)
+  {
+    if(typeof(id) != 'string')
+    {
+      this.parentElement = $(id);
+    } else {
+      this.parentElement = $('#'+id);
+    }
+
+    this.title = title;
+    this.shortDesc = shortDesc;
+    this.longDesc = longDesc;
+    this.isMore = false;
+
+    this.imageElement = $('<button type="button" class="button-plain dde-image" aria-label="'+JSStrings.tc('*:explanationButtonLabel', {TITLE: title})+'"></button>');
+    this.parentElement.append(this.imageElement);
+
+    this._super(this.imageElement, 'dde', 'left', 'bottom', style || 'explanation', contentElement, null, false);
+  },
+
+  setVisuallyHidden: function(hidden)
+  {
+    if(hidden) {
+      this.parentElement.find('.dde-image').first().toggleClass('offscreen', true).toggleClass('focusable', true);
+    } else {
+      this.parentElement.find('.dde-image').first().toggleClass('offscreen', false).toggleClass('focusable', false);
+    }
+  },
+
+  reset: function() { return this._super(); },
+
+  drawContent: function()
+  {
+    return '<div class="title">'+this.title+'</div>'+
+           '<div class="short-desc">'+this.shortDesc+'</div>'+
+           (this.longDesc?'<button class="button-plain more-control" style="cursor:pointer;">'+JSStrings.tc('common:more')+'</button><div class="long-desc" tabindex="0" style="overflow:auto; max-height:200px;'+(!this.isMore?' display:none;':'')+'">'+this.longDesc+'</div>':'');
+  },
+
+  observeContent: function()
+  {
+    if (this.longDesc)
+    {
+      var dd = this.ddElement();
+      this.showMore(dd);
+      dd.find('.more-control').on('click', this.clickMore.bind(this));
+    }
+  },
+
+  onShow: function()
+  {
+    var dd = this.ddElement();
+
+    dd
+      .attr('tabindex', -1)
+      .attr('role', 'tooltip')
+      .on('keydown', $.proxy(function(e){
+        switch(e.keyCode)
+        {
+          case 27:
+            this.hide();
+            this.imageElement.focus();
+          break;
+        }
+      }, this));
+  },  
+  
+  showMore: function(ddElement)
+  {
+    if (this.isMore)
+    {
+      ddElement.find('.long-desc').show();
+      ddElement.find('.more-control').html(JSStrings.tc('common:less'));
+    }
+    else
+    {
+      ddElement.find('.long-desc').hide();
+      ddElement.find('.more-control').html(JSStrings.tc('common:more'));
+    }
+    this.positionDropDownElement();
+  },
+  
+  clickMore: function(evt)
+  {
+    this.isMore = !this.isMore;
+    this.showMore(this.ddElement());
+    evt.stopPropagation();
+  },
+  
+  updateContent: function(title, shortDesc, longDesc)
+  {
+    this.title = title;
+    this.shortDesc = shortDesc;
+    this.longDesc = longDesc;
+    this.update();
+  },
+  
+  destroy: function()
+  {
+    this._super();
+    this.imageElement.remove();
+  }
+});
+
+var Overlay = Class.extend({
+  isVisible: false,
+  buttonsHeight: 35,
+  absHei: false,
+  restrictToWp: false,
+  hasCloseX: false,
+  element: null,
+  overlayElement: null,
+  buttons: [], //{id:'buttonID1', label:'BTN1'},{id:'buttonID2', label:'BTN2'}
+  btnElements: [],
+  isDrawn: false,
+    
+  init: function(overlayElement, id, name, height, width, /*minHeight, minWidth,*/ maxHeight, maxWidth, btnHAlign, vAlign, btncls, marginLeft, marginRight, marginTop, marginBottom) //, padding
+  {
+    (typeof(overlayElement) != 'undefined' && overlayElement != '')? this.overlayElement = overlayElement : this.overlayElement = $('body');
+    (typeof(id) != 'undefined' && id != '')? this.id = id :  this.id = '';
+    (typeof(width) != 'undefined' && width != '')? this.width = width :  this.width = '0';
+    (typeof(height) != 'undefined' && height != '')? this.height = height : this.height = '0';
+//    (typeof(minHeight) != 'undefined' && minHeight != '')? this.minHeight = minHeight : this.minHeight = '0';
+//    (typeof(minWidth) != 'undefined' && minWidth != '')? this.minWidth = minWidth : this.minWidth = '0';
+    (typeof(maxHeight) != 'undefined' && maxHeight != '')? this.maxHeight = maxHeight : this.maxHeight = '0';
+    (typeof(maxWidth) != 'undefined' && maxWidth != '')? this.maxWidth = maxWidth : this.maxWidth = '0';
+    (typeof(marginLeft) != 'undefined' && marginLeft != '')? this.marginLeft = marginLeft : this.marginLeft = '0';
+    (typeof(marginRight) != 'undefined' && marginRight != '')? this.marginRight = marginRight : this.marginRight = '0';
+    (typeof(marginTop) != 'undefined' && marginTop != '')? this.marginTop = marginTop : this.marginTop = '0';
+    (typeof(marginBottom) != 'undefined' && marginBottom != '')? this.marginBottom = marginBottom : this.marginBottom = '0';
+    (typeof(vAlign) != 'undefined' && vAlign != '')? this.vAlign = vAlign : this.vAlign = 'middle';
+    (typeof(btnHAlign) != 'undefined' && btnHAlign != '')? this.btnHAlign = btnHAlign : this.btnHAlign = 'center';
+    (typeof(btncls) != 'undefined' && btncls != '')? this.btncls = btncls : this.btncls = '';
+    this.overlayName = name || JSStrings.tc('overlays:overlay');
+  },
+  
+  haveButtons: function(){
+    if(this.buttons.length > 0)
+      return true;
+    return false;
+  },
+  
+  drawButtons: function(){
+    var b, bl, btn;
+    this.buttonsText = $(this.drawButtonsText());
+    this.buttonsBox.append(this.buttonsText);
+    for(b=0,bl=this.buttons.length;b<bl;b++){
+      btn = this.buttons[b];
+      this.btnElements[b] = $('<input type="button" id="'+btn.id+'" value="'+btn.label+'" class="overlayBtn '+this.btncls+' '+((typeof(btn.color) !== 'undefined')?(btn.color+' '):'')+'" />');
+      if(typeof(btn.click) !== 'undefined'){
+        this.btnElements[b].on('click', btn.click);
+      }   
+      this.buttonsBox.append(this.btnElements[b]);
+    }
+    this.buttonsBox.append('<div style="clear:both;"></div>');
+  },
+  
+  drawButtonsText: function(){
+    return '';
+  },
+  
+  drawCloseXButton: function(ob)
+  {
+    var closeX, closeXwrap;
+    if(this.hasCloseX) {
+      closeX = $('<img src="'+JSSettings.st('common:overlayX')+'" class="overlayX" />');
+      closeXwrap = $('<button class="overlayXWrap" aria-label="'+JSStrings.tc('common:close')+'"></button>');
+      closeXwrap.append(closeX);
+      closeXwrap.hover($.proxy(this.onXHoverIn, this, closeX),$.proxy(this.onXHoverOut, this, closeX));
+      closeXwrap.on('click', $.proxy(function(e){ e.preventDefault(); this.destroy();}, this));
+      ob.append(closeXwrap);
+    }    
+  },
+  
+  drawOverlayBox: function(){
+    var ob;//, closeX, closeXwrap;
+    ob = $('<div class="overlayBox" style="background:white;"></div>');
+//    if(this.hasCloseX) {
+//      closeX = $('<img src="'+JSSettings.st('common:overlayX')+'" class="overlayX" />');
+//      closeXwrap = $('<button class="overlayXWrap" aria-label="'+JSStrings.tc('common:close')+'"></button>');
+//      closeXwrap.append(closeX);
+//      closeXwrap.hover($.proxy(this.onXHoverIn, this, closeX), $.proxy(this.onXHoverOut, this, closeX));
+//      closeXwrap.on('click', $.proxy(function(e){ e.preventDefault(); this.destroy();}, this));
+//      ob.append(closeXwrap);
+//    }
+    return ob;    
+  },
+
+  onXHoverIn: function(closeBtn)
+  {
+    closeBtn.attr('src', JSSettings.st('common:overlayXhover'));
+  },
+  
+  onXHoverOut: function(closeBtn)
+  {
+    closeBtn.attr('src', JSSettings.st('common:overlayX'));
+  },
+  
+  alignHorizontal: function(){
+    this.overlayBox.css({'margin': this.marginTop + ' ' + this.marginRight + ' ' + this.marginBottom + ' ' + this.marginLeft});
+    if(this.haveButtons())
+      this.buttonsBox.css({'text-align':this.btnHAlign});
+  },
+  
+  alignVertical: function(){
+    this.overlayTdBox.css({'vertical-align':this.vAlign});
+  },
+  
+  onResize: function()
+  {    
+  },
+  
+  resize: function(){
+    var btnHei = ((this.haveButtons())? this.buttonsHeight : 0);
+    if(this.height !== '0'){
+      var hei = this.overlayElement.height() * (this.height/100); 
+      this.overlayBox.css({'min-height': hei+'px'});
+      this.overlayBoxContent.css({'min-height': hei - btnHei +'px'});
+    }
+    if(this.maxHeight !== '0'){
+      var mhei;
+      if(this.restrictToWp){
+        mhei = Math.min($(window).height(), this.overlayElement.height())  * (this.maxHeight/100);        
+      }else{
+        mhei = this.overlayElement.height() * (this.maxHeight/100);        
+      }
+      if(this.absHei == false){
+        this.overlayBoxContent.css({'max-height': mhei - btnHei +'px'});        
+      }else{
+        this.overlayBoxContent.css({'height': mhei - btnHei +'px'});                
+      }
+      if(this.haveButtons()){
+        this.buttonsBox.css({'min-height':btnHei + 'px'});          
+      }    
+    }
+    if(this.width !== '0'){
+      this.overlayBox.css({'width': this.width+'%'});      
+    }
+    if(this.maxWidth !== '0'){
+      var mwid;
+      if(this.restrictToWp){
+        mwid = Math.min($(window).width(), this.overlayElement.outerWidth()) * (this.maxWidth/100);      
+      }else{
+        mwid = this.overlayElement.outerWidth() * (this.maxWidth/100);      
+      }
+      if (mwid < 320) {
+        mwid = 320;
+      }
+      this.overlayBox.css({'max-width': mwid+'px'});
+    }
+    this.element.css({'min-width':this.overlayElement.css('min-width'),
+                      'min-height':this.overlayElement.css('min-height'),
+                      'height': this.overlayElement.outerHeight(true)});
+    this.onResize();
+  },
+  
+  draw: function(displayed){
+    if(this.isDrawn)
+      return;
+    var id = (this.id!='')?('id="'+this.id+'_overlay"'):'';
+    this.element = $('<div '+id+' class="overlayBck" style="'+((displayed)?'':'display:none;')+'"></div>'); //style="display:none;"
+    this.overlayTableBox = $('<div class="overlayTableBox"></div>');
+    this.overlayTdBox = $('<div class="overlayTdBox"></div>');
+    this.overlayBox = $(this.drawOverlayBox()); 
+    this.overlayBoxContent = $('<div class="overlayBoxContent"></div>');
+    
+    this.overlayContent = $(this.onDrawContent());
+    this.overlayBoxContent.html(this.overlayContent);
+    this.overlayBox.append(this.overlayBoxContent);
+    if(this.haveButtons()){
+      this.buttonsBox = $('<div class="overlayBtns"></div>');
+      this.overlayBox.append(this.buttonsBox);
+      this.drawButtons();        
+    }
+    this.drawCloseXButton(this.overlayBox);
+    
+    this.overlayTdBox.append(this.overlayBox);
+    this.overlayTableBox.append(this.overlayTdBox);
+    this.element.append(this.overlayTableBox);    
+    $(this.overlayElement).append(this.element);
+  
+    $(window).on('resize', $.proxy(function(){this.resize();}, this));
+    this.resize();
+    this.alignHorizontal();
+    this.alignVertical();
+    
+    this.overlayBox.attr('role', 'dialog');
+    if(this.overlayName != '') this.overlayBox.attr('aria-label', this.overlayName);
+        
+    this.isDrawn = true;
+    this.onObserveContent();
+    if(displayed) {
+      this.isVisible = true;
+      this.observeControls();
+      $('#userInterface').attr('aria-hidden', true);
+    }
+  },
+  
+  onOverlayDestroy: function(){  
+  },
+  
+  observeControls: function()
+  {
+    var focusable = this.element.find(':focusable');
+    this.lastFocused = $(':focus');
+    focusable.first().focus();
+        
+    focusable.first().on('keydown', function(ev){
+      if (ev.shiftKey && ev.which == 9) {
+        focusable.last().focus();
+        ev.preventDefault(); 
+      }      
+    });
+    
+    focusable.last().on('keydown', function(ev){
+      if (!ev.shiftKey && ev.which == 9) {
+        focusable.first().focus();
+        ev.preventDefault(); 
+      }      
+    });
+  },
+  
+  destroy: function(){
+    if(this.isVisible  ) $('#userInterface').removeAttr('aria-hidden');
+    this.isVisible = false;
+    this.onOverlayDestroy();
+    this.element.remove();
+    if(typeof(this.lastFocused) != 'undefined') this.lastFocused.focus();
+  },
+  
+  show: function(){
+    this.element.show();
+    this.isVisible = true;
+    this.observeControls();
+    $('#userInterface').attr('aria-hidden', true);
+//    this.overlayBox.find(':focusable').first().focus();
+//    console.log(this.overlayBox, this.overlayBox.find(':focusable'));
+  },
+  
+  hide: function(){
+    this.element.hide();
+    if(this.isVisible ) $('#userInterface').removeAttr('aria-hidden');
+    this.isVisible = false;
+  },
+  
+  onDrawContent: function(){
+    return '<div style="padding: 20px;"></div>';  
+  },
+  
+  onObserveContent: function(){
+  } 
+});
+
+var AlertOverlay = Overlay.extend( {
+  alertMessage: '',
+  init: function(id, alertMessage, buttons, overlayTableBoxPosition, percentWidth, overlayElement) {
+    percentWidth = percentWidth || '';
+    if(percentWidth == '') percentWidth = '80';
+    this.alertMessage = alertMessage || '';
+    this.buttons = buttons || [];
+    this.overlayElement = overlayElement || '';
+    this._super(this.overlayElement, id, JSStrings.tc('overlays:alertOverlay'), '', '', '35', percentWidth, 'center', 'middle', '', 'auto', 'auto');
+    this.draw();
+    if(overlayTableBoxPosition){
+      if(overlayTableBoxPosition == 'absolute'){
+        this.overlayTableBox.css({'position':'absolute'});
+      } 
+    }
+    this.overlayBox.attr('aria-describedby', 'alertOvrMsg');  
+  },
+  onDrawContent: function(){
+    return '<div id="alertOvrMsg" >'+this.alertMessage+'</div>';    
+  } 
+});

@@ -1,0 +1,37 @@
+<fulfillmentToken fulfillmentType="loan" auth="user" xmlns="http://ns.adobe.com/adept">
+  <distributor>urn:uuid:9cb786e8-586a-4950-8901-fff8d2ee6025</distributor>
+  <operatorURL>https://acs.ebookcentral.proquest.com/fulfillment</operatorURL>
+  <transaction>5180849_309734482</transaction>
+  <expiration>2021-10-11T15:57:23+00:00</expiration>
+  <resourceItemInfo>
+    <resource>urn:uuid:00000000-0000-0000-0000-000005180849</resource>
+    <resourceItem>0</resourceItem>
+    <metadata>
+      <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">A Guide to the Project Management Body of Knowledge (PMBOK® Guide)</dc:title>
+      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">ProjectManagement Institue; </dc:creator>
+      <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">Project Management Institute</dc:publisher>
+      <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">5180849</dc:identifier>
+      <dc:format xmlns:dc="http://purl.org/dc/elements/1.1/">application/pdf</dc:format>
+    </metadata>
+    <licenseToken>
+      <resource>urn:uuid:00000000-0000-0000-0000-000005180849</resource>
+      <permissions>
+        <display>
+          <duration>15551999</duration>
+        </display>
+        <excerpt>
+          <duration>15551999</duration>
+          <count initial="159" max="159" incrementInterval="97811"/>
+        </excerpt>
+        <print>
+          <duration>15551999</duration>
+          <count initial="318" max="318" incrementInterval="48905"/>
+        </print>
+        <play>
+          <duration>15551999</duration>
+        </play>
+      </permissions>
+    </licenseToken>
+  </resourceItemInfo>
+  <hmac>AnDeEE/xPDtDOGknUftvNarohYY=</hmac>
+</fulfillmentToken>

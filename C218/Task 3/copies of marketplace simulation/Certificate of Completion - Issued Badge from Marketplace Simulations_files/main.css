@@ -1,0 +1,238 @@
+.mouseMode h1, .mouseMode h2, .mouseMode h3, .mouseMode h4, .mouseMode h5, .mouseMode h6,
+.mouseMode div, .mouseMode span, .mouseMode p, .mouseMode ul, .mouseMode ol, .mouseMode a, .mouseMode img, .mouseMode button,
+.mouseMode rect, .mouseMode svg, .mouseMode g, .mouseMode image
+{
+  outline: none;
+}
+
+body { 
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 8pt;
+  margin: 0px; 
+  background-color:#FFFFFF; 
+  padding:0px 0px 0px 0px; 
+}
+
+form { margin:0px 0px 0px 0px; padding:0px 0px 0px 0px; }
+
+.def-button
+{
+  border-color: #CCCCCC;
+  border-width: 1px;
+  width: 70px;
+  background: #F4F4F4;
+  font-family: arial, verdana;
+  font-weight: bold;
+  color: #64507f;
+  cursor: pointer;
+  font-size: 1em;  
+  margin: 0px 5px 0px 0px;
+}
+
+div.button-decoration input, div.button-decoration {
+    color: #3154bb;
+    cursor: pointer;
+    font-weight: bold;
+    width: 70px;
+}
+.button-decoration {
+    background: rgba(0, 0, 0, 0) url("../../imgs/game-design/blue_btn.png") repeat-x scroll center bottom;
+    border: 2px solid #bcc9f8;
+    color: #3154bb;
+    cursor: pointer;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    height: 15px;
+    margin: 0;
+    padding: 3px;
+    text-align: center;
+}
+
+.button-class.red-button, input[type="button"].button-class.red-button {
+  background-color: #BD100A;
+}
+.button-class.red-button:hover:not([disabled]),
+.button-class.red-button:focus:not([disabled]),
+input[type="button"].button-class.red-button:hover:not([disabled]),
+input[type="button"].button-class.red-button:focus:not([disabled])
+{
+  outline: none;
+  background-color: #E9140C;
+}
+.button-class.red-button:active:not([disabled]),
+input[type="button"].button-class.red-button:active:not([disabled])
+{
+  background-color: #9B0000;
+}
+
+input, select
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  margin: 0px;
+}
+
+.cursorPointer{ cursor:pointer; }
+
+.printImg { width: 14px; height: 14px; background: url("../imgs/print-new.png"); }
+.printImg:hover { background: url("../imgs/print-over-new.png"); }
+
+.footer {
+  line-height: 20px;
+  padding: 10px 0px;
+}
+.footer.flinks {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+.footer a:hover, .footer a:focus, .footer a:hover div, .footer a:focus div {
+  outline: none;
+  text-decoration: underline;
+}
+.footer.flinks a:hover, .footer.flinks a:focus {
+  font-weight: normal;
+}
+.ilsLogoText{ display: inline-block; margin-left: 5px; line-height: 20px; }
+.ilsLogoImg{ display: inline-block; vertical-align: bottom; margin-top:4px; margin-right:4px; border:0px;}
+.copyright{ color: #ffffff; font-size: 0.9em; border-top: 1px solid #e2e2e2; }
+
+.paddingTop15{padding-top:15px;}
+
+.clearBoth{ clear:both; }
+.floatLeft{ float:left;}
+.floatRight{ float:right;}
+
+.alignCenter{ text-align:center; }
+.alignRight{ text-align:right; }
+
+.bold{ font-weight:bold; }
+
+.important{ color:red; margin:5px 0px 5px 0px; font-weight:bold; font-style:italic; }
+
+.wsiAccountTop
+{
+  width: 89%;
+  background-color: #FFFFFF;
+  border-bottom:3px solid #989898;
+  color: #000000;
+  font-size:1.1em;
+  padding: 20px 5.5%;
+  margin-bottom:0;
+}
+
+.wsiAccountTop #siteLogo 
+{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.div2-1
+{
+  float:left;
+  margin-top: 0px;
+  margin-right: 0px;
+  width:50%;
+}
+
+.newFooterWrap
+{
+  background-color: #757575;
+  color: #FFFFFF;
+  font-size: 0.9em;
+  margin-top:15px;
+}
+
+div.newFooterWrap div.footer a 
+{
+  color: #FFFFFF;
+}
+
+.arrowToTop
+{
+  width:20px;
+  height:11px;
+  margin: 0px 80px 0px 80px;
+  background-image: url("../imgs/arrowToTop.png");
+  background-repeat: no-repeat;
+}
+
+#arrowToRight
+{
+  width:11px;
+  height:20px;
+  margin: 15% 24px 0px 0px;
+  background-image: url("../imgs/arrowToRight.png");
+  background-repeat: no-repeat;
+}
+
+#arrowToLeft
+{
+  width:11px;
+  height:20px;
+  margin: 5% 0px 32% 6%;
+  background-image: url("../imgs/arrowToLeft.png");
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.table
+{
+  width:100%;
+}
+
+.break{ height:20px;}
+
+.itStyle{ font-size: 10pt; }
+.itSectionDiv{ padding: 5px; background-color: #e7e8e9; width: 50%;}
+
+/*******************RESPONSIVE DESIGN******************************/
+
+.span_1_of_1{width:24.2%  !important; width: calc(25% - 6px) !important; }
+.span_1_of_2{float:left; padding:0 1% 0 0; width:49%  !important; }
+
+.col 
+{
+  display: block;
+  float: left !important;
+  margin: 8px 0 8px 3px;
+}
+
+@media only screen and (max-width: 530px)
+{    
+  .span_1_of_1{width: 96.8% !important; }
+  .col 
+  {
+    margin: 1.6px;
+  }
+}
+
+.materialSwitch{float: right; padding-right: 5px;}
+
+.button-plain {
+  background: none;
+  border: none;
+  display: block;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+button.dde-image {
+  cursor: pointer;
+  margin-top: 2px;
+  margin-left: 2px;
+  margin-right: 2px;
+  min-width: 11px;
+  min-height: 11px;
+  width: 11px;
+  height: 11px;
+  background: url(../imgs/question_mark.png) no-repeat;
+  display: inline;
+  vertical-align: top;
+}

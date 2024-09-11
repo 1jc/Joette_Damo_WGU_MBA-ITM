@@ -1,0 +1,504 @@
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function (oThis) {
+    if (typeof this !== "function") {
+      // closest thing possible to the ECMAScript 5 internal IsCallable function
+      throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
+    }
+ 
+    var aArgs = Array.prototype.slice.call(arguments, 1),
+        fToBind = this,
+        fNOP = function () {},
+        fBound = function () {
+          return fToBind.apply(this instanceof fNOP && oThis
+                                 ? this
+                                 : oThis,
+                               aArgs.concat(Array.prototype.slice.call(arguments)));
+        };
+ 
+    fNOP.prototype = this.prototype;
+    fBound.prototype = new fNOP();
+ 
+    return fBound;
+  };
+}
+
+/* Simple JavaScript Inheritance
+ * By John Resig http://ejohn.org/
+ * MIT Licensed.
+ * http://ejohn.org/blog/simple-javascript-inheritance
+ */
+// Inspired by base2 and Prototype
+(function(){
+  var initializing = false, fnTest = /xyz/.test(function(){xyz;}) ? /\b_super\b/ : /.*/;
+ 
+  // The base Class implementation (does nothing)
+  this.Class = function(){};
+ 
+  // Create a new Class that inherits from this class
+  Class.extend = function(prop) {
+    var _super = this.prototype;
+   
+    // Instantiate a base class (but only create the instance,
+    // don't run the init constructor)
+    initializing = true;
+    var prototype = new this();
+    initializing = false;
+   
+    // Copy the properties over onto the new prototype
+    for (var name in prop) {
+      // Check if we're overwriting an existing function
+      prototype[name] = typeof prop[name] == "function" &&
+        typeof _super[name] == "function" && fnTest.test(prop[name]) ?
+        (function(name, fn){
+          return function() {
+            var tmp = this._super;
+           
+            // Add a new ._super() method that is the same method
+            // but on the super-class
+            this._super = _super[name];
+           
+            // The method only need to be bound temporarily, so we
+            // remove it when we're done executing
+            var ret = fn.apply(this, arguments);        
+            this._super = tmp;
+           
+            return ret;
+          };
+        })(name, prop[name]) :
+        prop[name];
+    }
+   
+    // The dummy class constructor
+    function Class() {
+      // All construction is actually done in the init method
+      if ( !initializing && this.init )
+        this.init.apply(this, arguments);
+    }
+   
+    // Populate our constructed prototype object
+    Class.prototype = prototype;
+   
+    // Enforce the constructor to be what we expect
+    Class.prototype.constructor = Class;
+ 
+    // And make this class extendable
+    Class.extend = arguments.callee;
+   
+    return Class;
+  };
+/*
+ * How it is work.
+    var Person = Class.extend({init: function(isDancing){this.dancing = isDancing;}, dance: function(){return this.dancing;}});
+    var Ninja = Person.extend({init: function(){this._super( false );}, dance: function(){// Call the inherited version of dance() return this._super();}, swingSword: function(){return true;}});
+     
+    var p = new Person(true);
+    p.dance(); // => true
+    var n = new Ninja();
+    n.dance(); // => false
+    n.swingSword(); // => true
+     
+    // Should all be true
+    p instanceof Person && p instanceof Class && n instanceof Ninja && n instanceof Person && n instanceof Class
+ */
+})();
+
+
+var Application = (function()
+{
+  initialize = function()
+  {
+    this.wm = new WindowManager('wsi', 'user', window);
+    this.openWindow = function(url, name, type, width, height, hPosition, vPosition, left, top)
+    {
+      width = width || 800;
+      height = height || 500;
+      this.wm.open(url, name, type, width, height, hPosition, vPosition, left, top);
+    };
+    $(window).on('keydown', $.proxy(toggleKeyboardMode, this, true));
+    $(window).on('mousedown', $.proxy(toggleKeyboardMode, this, false));
+  };
+
+  /*
+   * Toggle visual outlines for software
+   * keyPress true means key was pressed, false means there was mouse click event
+   * interactive should contain interactive elements that do not trigger this mode when keyboard is pressed on them.
+   * For now, we will switch mode on tab press.
+   * */
+  toggleKeyboardMode = function(keyPress, event)
+  {
+    var interactive = [], target = event.target;
+//    interactive = ['button','input','select','textarea'];
+    if(keyPress) {
+      if(event.keyCode == 9) //(interactive.indexOf(target.tagName.toLowerCase()) == -1)
+      {
+        $('body').toggleClass('mouseMode', false).toggleClass('keyboardMode', true);
+      }
+    } else {
+      $('body').toggleClass('mouseMode', true).toggleClass('keyboardMode', false);
+    }    
+  };
+  
+  return initialize;
+})();
+
+var Live = 
+{
+  version:       '',
+  servicePoint:  '', //TODO: not used, we are using proxy pass instead of
+  remoteCalls:   'json',
+  user:          null,
+  languages: ["en-us", "de", "es", "fr", "lt", "pl", "pt-br", "zh-cn", "ko", "ru"],
+  debugMode:      0,
+//user setttings  
+  useCache:               true,
+  serviceUpdaterInterval: 5,       // in seconds
+  userActive:             1200000, // in miliseconds
+  decimalDelimiter:       '.',
+  thousandDelimiter:      ',',
+  localTime:              true,
+  useLocalTime:           function() { return this.localTime; },
+  companyProfile:         function() { return true; },
+  
+  getLangMenu: function(stepVars, language, ns)
+  {
+    var languages = '';
+    
+    if (stepVars.languages.length > 1)
+    {
+      var l = "<span id='test' style='visibility:hidden'></span> <select class='langBar' ONCHANGE='location = this.options[this.selectedIndex].value;'>";
+      for(value in stepVars.languages) 
+      {
+        if(stepVars.languages[value]==language) var selected = true;
+        else var selected = false;
+        l += "<option value='?"+stepVars.langHrefParams+"language="+stepVars.languages[value]+"' "+((selected)?"selected":"")+">"+JSStrings.tc(ns+":"+stepVars.languages[value])+"</option>";
+      }
+      l += "</select>";
+      languages = "<div class='lang-menu'>"+l+"</div>";
+    }
+      
+    return languages;
+  },
+  
+  alignLangMenu: function()
+  {
+    var selectedLang = $(".langBar option:selected").html();
+    $('#test').text(selectedLang);
+    $(".langBar").width(parseInt($('#test').width())+25);
+  },
+  
+  getPopUp: function(where, title, content, callback)
+  {
+//this.disableGenericPopUp();
+    var position = [];
+    //var scrOffset = $(where).offset();
+    var popupWidth  = 400;
+    var popupHeight = 400;
+    var scrCenterTop = $(where).height()/2;
+    var scrCenterLeft = $(where).width()/2;
+    var popupTop = scrCenterTop - popupHeight/2;
+    var popupLeft = scrCenterLeft - popupWidth/2
+    
+    $(where).append('<div id="shadowOverlay"></div>');
+    $('#shadowOverlay').css({'position':'absolute', 'top':'0', 'left':'0',  'width':$(where).width()+'px', 'height':$(where).height()+'px', 'cursor':'pointer'});
+    $(where).append('<div id="genericDialogPopup" ></div>');
+    $('#genericDialogPopup').append('<div id="msgContainer">'+
+                                       '<img src="templates/imgs/close.png" id="closePopUp"/>'+
+                                       '<div id="popupTitle">'+title+'</div>'+
+                                       '<div id="popupCnt">'+content+'</div>'+
+                                     '</div>');
+
+    $('#genericDialogPopup').css({'width':popupWidth+'px', 'min-height':popupHeight+'px', 'top':popupTop+'px', 'left':popupLeft+'px'});
+    //var that = this;
+    $('#closePopUp').css({'cursor':'pointer', 'float':'right'})
+                    .click(this.closePopUp.bind(this, '#shadowOverlay', '#genericDialogPopup', [$('#closePopUp'), $('#shadowOverlay')]));
+    $('#shadowOverlay').click(this.closePopUp.bind(this, '#shadowOverlay', '#genericDialogPopup', [$('#closePopUp'), $('#shadowOverlay')]));
+
+    if(typeof(callback) == "function") callback($("#popupCnt"));
+  },
+  
+  closePopUp: function(shadow, popup, elmntsToUnbind)
+  {
+    this.unbindFields(elmntsToUnbind);
+    $(shadow).remove();
+    $(popup).remove();
+  },
+  
+  unbindFields: function(el)
+  {
+    if(typeof(el)!='object') return null;
+    for(elm in el)
+      if(el[elm]!=null && el[elm]!='') el[elm].unbind();
+  }
+};
+
+var TCS = (function()
+{
+  var tcs = function(tcs)
+  {
+    this.tcs = tcs;
+    this.tc = function(id, params)
+    {
+      var str, property;
+      if (!this.exists(id))
+      {
+        str = 'UNDEF:'+id+'( ';
+        for(property in params) str += property+'='+params[property]+' ';
+        str += ')';       
+      }
+      else
+      {
+        str = this.tcs[id];
+        for(property in params) str = str.replace(new RegExp('{'+property+'}', 'gi'), params[property]);
+      }
+      return str; 
+    };
+
+    this.exists = function(id)
+    {
+      return typeof(this.tcs[id]) != 'undefined'
+    };
+  };
+  
+  return tcs;
+})();
+
+var JSStrings =
+{
+  tcns: [],
+  exps: [],
+  
+  add: function(ns, tcs)
+  {
+    this.tcns[ns] = new TCS(tcs);
+  },
+
+  addExp: function(ns, exps)
+  {
+    this.exps[ns] = [];
+    for(var i=0,ii=exps.length;i<ii;++i) this.exps[ns][exps[i].i] = exps[i]; 
+  },
+  
+  tc: function(id, params)
+  {
+    var ids = id.split(":");
+    if (typeof(this.tcns[ids[0]]) != 'undefined') {
+      return this.tcns[ids[0]].tc(ids[1], params);
+    } else if (ids[0] === '*' && typeof(ids[1]) != 'undefined') {
+      for (tc in this.tcns) {
+        if (this.tcns[tc].exists(ids[1])) {
+          return this.tcns[tc].tc(ids[1], params);
+        }
+      }
+    }
+    return 'UNDEF NS: '+ids[0];
+  },
+  
+  eo: function(id)
+  {
+    var ids = id.split(":");
+    if (typeof(this.exps[ids[0]]) != 'undefined' && typeof(this.exps[ids[0]][ids[1]]) != 'undefined') return this.exps[ids[0]][ids[1]];   
+    return null;
+  }
+}
+
+var JSSettings = 
+{
+  stns: [],
+  stPfx: 'ns_',
+
+  add: function(ns, sts)
+  {
+    this.stns[this.stPfx+ns] = new STS(sts);
+  },
+
+  st: function(id, scenario)
+  {
+    var ids = id.split(":");
+    if (typeof(this.stns[this.stPfx+ids[0]]) != 'undefined') return this.stns[this.stPfx+ids[0]].st(ids[1], scenario);
+    else return 'UNDEF NS: '+ids[0];
+  }
+}; 
+
+var WindowManager = (function()
+{
+  var initialize = function(name, mode, win)
+  {
+    this.name   = name;
+    this.parent = win || window;
+    this.windowNameMode  = mode || 'auto'; //user, auto
+    
+    this.childs  = [];
+    this.counter = 0;
+    
+    this.destroy = function()
+    {
+      this.closeChilds();
+    };
+    
+    this.getWindowName = function(name)
+    {
+      name = name || '';
+      if (name == '' || this.windowNameMode == 'auto') return 'wm_'+this.name+'_'+(this.counter++);
+      return 'wm_'+this.name+'_'+name;
+    };
+    
+    this.closeChilds = function(name)
+    {
+      for(var i=0,ii=this.childs.length;i<ii;++i)  if (typeof(this.childs[i]) != 'undefined') this.childs[i].close();
+      this.childs = [];  
+    };
+
+    this.open = function(url, name, type, width, height, hPosition, vPosition, left, top)
+    {
+      this.childs.push(WindowManager.open(this.parent, url, this.getWindowName(name), type, width, height, hPosition, vPosition, left, top));
+    };
+  }
+
+  return initialize;  
+})();
+
+$.extend({
+  escapeHTML: function(string) {
+    return string.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+});
+
+/*
+ * static functions of WindowManager
+ */
+WindowManager.parentLeft = function(parent){ return parent.screenX || parent.screenLeft; };
+WindowManager.parentTop = function(parent){ return parent.screenY || parent.screenTop; };
+WindowManager.parentWidth = function(parent){ return parent.outerWidth || parent.document.viewport.getWidth(); };
+WindowManager.parentHeight = function(parent){ return parent.outerHeight || parent.document.viewport.getHeight(); };
+WindowManager.open = function(parent, url, name, type, width, height, hPosition, vPosition, left, top)
+{
+  width = width || 200;
+  height = height || 200;
+  left = left || 0;
+  top = top || 0;
+  type = type || 'simple'; // simple, tool
+  hPosition = hPosition || 'center'; //user, left, center, right 
+  vPosition = vPosition || 'center'; //user, top, center, bottom
+
+  switch (hPosition)
+  {
+    case 'left':   left = this.parentLeft(parent); break; 
+    case 'center': left = this.parentLeft(parent) + (this.parentWidth(parent) - width)/2; break; 
+    case 'right':  left = this.parentLeft(parent) + (this.parentWidth(parent) - width); break; 
+  }
+  
+  switch (vPosition)
+  {
+    case 'top':    top = this.parentTop(parent); break; 
+    case 'center': top = this.parentTop(parent) + (this.parentHeight(parent) - height)/2; break; 
+    case 'bottom': top = this.parentTop(parent) + (this.parentHeight(parent) - height); break; 
+  }
+
+  var win, params = 'left='+left+',top='+top+',width='+width+',height='+height;
+  switch (type)
+  {
+    case 'simple': params += ',location=no,menubar=no,resizable=yes,scrollbars=yes,status=yes,titlebar=yes,toolbar=no'; break;
+    case 'tool': params += ',location=no,menubar=no,resizable=no,scrollbars=no,status=no,titlebar=yes,toolbar=no'; break;
+    case 'full': params = ''; break;
+  }
+  
+  win = parent.open(url, name, params);
+  win.focus();
+  return win;
+};
+
+function setPossition(toEl, ddEl, myPosition, atPosition) 
+{  
+  var item = ddEl;
+  var connector = toEl;
+  if ((item.is(":visible"))) {item.hide();}
+  
+  //item.css({left:0, top:0, width:(connector.width()-5)+'px'});
+  item.css({width:(connector.width()-5)+'px'});
+/*  item.position({
+      my: (typeof(myPosition)!='undefined' && myPosition!='')?myPosition:"left bottom", //which horizontal/vertical part is aligned, here: my left bottom is on top left side of connector element
+      at: (typeof(atPosition)!='undefined' && atPosition!='')?atPosition:"left top", //where to align MY element on connector element
+      of: connector, //element which we connecting with exlanation element 
+      collision: "none none"
+ });*/
+}
+
+function showMsg(parentEl, myEl, msg, myPosition, parentPosition, cssCls)
+{
+  $(myEl).text(msg);
+  $(myEl).removeClass();
+  $(myEl).addClass(cssCls);
+  setPossition(parentEl, myEl, myPosition, parentPosition);//second position it
+  $(myEl).slideDown("slow");
+}
+
+function hideMsg(el)
+{
+   $(el).val('');
+   $(el).hide();
+}
+
+function isNotEmptyValue(el) {return jQuery.trim(el.val()) == "" ? false : true;}
+
+var Cookie = {
+  set: function (name, value)
+  {
+    document.cookie = encodeURIComponent(name)+'='+encodeURIComponent(value)+'; path=/';
+  },
+  get: function (name)
+  {
+    var
+      cv = document.cookie.match('(^|;)\\s*'+encodeURIComponent(name)+'\\s*=\\s*([^;]+)');
+    return cv ? decodeURIComponent(cv.pop()) : null;
+  }
+};
+
+var HistoryManager = {
+  active: true,
+  inPopState: true,
+  popEvent: null,
+  supported: !!(window.history && history.pushState),
+
+  initialize: function(active, popEvent)
+  {
+    this.active = active && this.supported;
+    this.popEvent = popEvent;
+    this.inPopState = false;
+    if (this.active) {
+      $(window).on('popstate', this.popState.bind(this));
+    }
+
+    this.inPopState = false;
+  },
+
+  pushState: function(stateObj, title, url)
+  {
+    if (!this.active) {
+      return;
+    }
+    history.pushState(stateObj, title, url);
+  },
+
+  replaceState: function(stateObj, title, url)
+  {
+    if (!this.active) {
+      return;
+    }
+    history.replaceState(stateObj, title, url);
+  },
+
+  popState: function(event)
+  {
+    if (!this.active) {
+      return;
+    }
+    this.inPopState = true;
+    this.popEvent(event.originalEvent.state);
+    this.inPopState = false;
+  },
+
+  inPopStateEvent: function()
+  {
+    return this.inPopState;
+  }
+};

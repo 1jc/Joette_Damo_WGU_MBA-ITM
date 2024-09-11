@@ -1,0 +1,899 @@
+body{
+  background-color: #aab6be;
+}
+
+body, span, a{ 
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;/* Regular 400 */
+  line-height: 1.375em;
+  letter-spacing: .01em 
+}
+
+figure{
+  margin: 0px;
+}
+a{
+  color: #004ab5;
+  line-height: normal;
+}
+/* unvisited link */
+a:link {
+  color: #004ab5;
+  line-height: normal;
+}
+
+/* visited link */
+a:visited {
+  color: #003391;
+}
+
+/* mouse over link */
+a:hover {
+  color: #006be0;
+}
+
+/* focus link */
+a:focus {
+  color: #004ab5; /*same as for default.*/
+  text-decoration: none;
+  border-bottom: 2px dashed #043347;
+  background-image: linear-gradient(to right, #c0e9ff 100%, transparent 0%);
+  background-position: 0 1.1em;
+  background-repeat: repeat-x;
+  background-size: 8px 4px;
+  outline: none;
+  line-height: normal;
+}
+
+/* selected link */
+a:active {
+  color: #003391;
+  outline: none;
+  border: none;
+}
+
+.linkpushed{
+  color: #004ab5;
+  text-decoration: none;
+}
+
+.linkdisabled{
+  color: #666666;
+  text-decoration: none;
+}
+
+.link_med-bkg-pushed{
+  color: #002873;
+  text-decoration: none;
+}
+
+.link_med-bkg-disabled{
+  color: #374347;
+  text-decoration: none;
+}
+
+a.link_med-bkg {
+  color: #002873;
+  line-height: normal;
+}
+
+a.link_med-bkg:hover {
+  color: #00419c;
+}
+
+a.link_med-bkg:active {
+  color: #043347;
+}
+
+.block {
+  position: relative;
+}
+
+.block a[href]::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.block:focus-within {
+  text-decoration: none;
+  border: 2px dashed #043347; 
+  background-image: url('../imgs/open-badges/completion-rectangle.svg');
+  background-position: center;
+  background-size: 100% 100%; 
+  background-origin: padding-box;
+  outline: none;
+  box-shadow:  2px 2px 2px rgba(0,0,0,0.2);
+}
+
+.block:hover {
+  border-color: #004ab5;
+  box-shadow:  2px 2px 2px rgba(0,0,0,0.2);  
+}
+
+/* Help out IE */
+
+.block a[href]:hover, .block a[href]:focus {
+  outline: .4em solid rgba(0,0,255,.25);
+  outline-offset: .25em;
+}
+
+/* Undo the IE */
+
+.block:hover a[href]:hover, .block:hover a[href]:focus, .block:focus-within a[href]:hover, .block:focus-within a[href]:focus {
+  outline: none;
+}
+
+
+ .button-basic {
+   background-color: #1b75bb; /* this should slowly replace the blue buttons style in MP */
+   border: 2px solid #1b75bb;
+   color: #ffffff;
+   padding: .5em .5em;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 1em;
+   border-radius: 5px;
+   /* I just coppied the margins from MP, I have no specific recommendations at this time. */
+   margin-top: 5px;
+   margin-bottom: 5px;
+   margin-left: 7px;
+   outline: none;
+ }
+ .button-basic:hover {
+   background-color:#0065af;
+   border: 2px solid #0065af;
+ }
+ .button-basic:active {
+   background-color:#004a7c;
+   border: 2px solid #004a7c;
+   outline: none;
+ }
+ .button-basic:focus {
+   /* this meets contrast recommendations and is 2px. 1px can sometimes render way too thin to see well. */
+   background-color:#0065af;
+   border: 2px solid #0065af;
+   outline: 2px solid white;
+   outline-offset: -7px;
+ }
+ ::-moz-focus-inner {border:0;}
+ /* some items have a custom focus style + browser default FF + Mac system outline. this can defeat contrast. */
+ .disabled {
+   /* maybe psuedo class? */
+   background-color:#989898;
+   border: 2px solid #989898;
+   color: #cccccc;
+ }
+ .pushed {
+   /* this style is for when something needs to look chosen, like the selected tab. But it's not really interactible. I have not used it in a design yet in 2020 but it seems like a good thing. */
+   background-color:#005896;
+   border: 2px solid #043347;
+ }
+ .ghost{
+   /* this is an alternate style of the button for when you want to make a choice look secondary to another more popular choice. */
+   background-color:#ffffff;
+   border: 2px solid #1b75bb;
+   color: #1b75bb;
+ }
+ .ghost:hover{
+   color: #ffffff;
+ }
+ .ghost:focus{
+   color: #ffffff;
+ }
+
+ .ob-button {
+   margin-left: 0px;
+   display: block;
+   cursor: pointer;
+ }
+
+ .font_base-reading {
+  font-family: Roboto;
+  font-weight: 400;/* Regular 400 */
+  font-size: 16px;
+  color: #043347;
+}
+
+ .font_title {    
+   font-family: Roboto;
+   font-size: 28px;
+   font-weight: 400;/* Regular 400 */
+   color: #043347;
+ }
+ 
+ .font_title-important {
+   font-family: Roboto;
+   font-size: 40px;
+   font-weight: 700; /*Bold 700*/
+   color: #043347;
+   letter-spacing: 1px;
+ }
+ 
+ .font_title-classifier {
+  font-family: Roboto;
+  font-weight: 300;/* Light 300 */
+  font-size: 24px;
+  color: #043347;
+}
+
+.font_important-section {
+  font-family: Roboto;
+  font-weight: 700; /*Bold 700*/
+  font-style: italic;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #043347;
+}
+
+.font_article-subheading {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700; /*Bold 700*/
+  color: #043347;
+}
+
+.font_article {
+  font-family: Roboto;
+  font-weight: 300;/* Light 300 */
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.5rem;
+  letter-spacing: 0.03em;
+  margin-bottom: .625rem;
+}
+
+.font_caption-R {
+  opacity: 0.9;
+  font-family: Roboto;
+  font-weight: 400;/* Regular 400 */
+  font-size: 13px;
+  font-style: italic;
+  color: #000000;
+  line-height:normal;
+  text-align: right;
+}
+
+.mb0 {
+  margin-bottom: 0px;
+}
+
+.icon-open-win:after{
+  content: url('../imgs/open-badges/pop-out_default.svg');
+  width: 11px;
+  height: 11px;
+  margin-left: 4px;
+}
+
+.icon-open-win:hover:after{
+  content: url('../imgs/open-badges/pop-out_hover.svg');
+  width: 11px;
+  height: 11px;
+  margin-left: 4px;
+}
+
+.icon-open-win:active:after{
+  content: url('../imgs/open-badges/pop-out_active.svg');
+  width: 11px;
+  height: 11px;
+  margin-left: 4px;
+}
+
+.icon-open-win_med-bkg:after{
+  content: url('../imgs/open-badges/pop-out_med-bkg.svg');
+  width: 11px;
+  height: 11px;
+  margin-left: 4px;
+}
+
+.icon-open-win_med-bkg:hover:after{
+  content: url('../imgs/open-badges/pop-out_med-bkg_hover.svg');
+  width: 11px;
+  height: 11px;
+  margin-left: 4px;
+}
+
+.overlayBox{
+  border-radius: 5px;  
+  box-shadow: 5px 7px 7px rgba(0,0,0,0.25);
+  border: 1px solid #d1d1d1;
+}
+
+.messageDialog{
+  display: flex;
+  justify-content: stretch ;
+  align-items: center;
+  padding: 5px;
+  font-family: Roboto;
+  font-size: 16px;
+  color: #043347;
+  letter-spacing: 1px;
+}
+
+.closeBtn{
+  margin-bottom: 57px;
+  margin-left: 30px;
+  cursor: pointer;
+  border: 0px;
+  background-color: #ffffff;
+}
+
+.badgeDetailBtn
+{
+  width: 171px;
+  height: 36px;
+  border-radius: 5px;
+  background-color:  #ffffff;
+  vertical-align: middle;
+  display:table-cell;
+  border: 2px solid #1b75bb;
+  font-family: Roboto;
+  font-size: 16px;
+  color: #1b75bb;
+  text-decoration: rgb(27, 117, 187);
+  text-align: center;
+  font-weight: bold;  
+}
+
+.badgeDetailBtn:hover{
+  background-color: #005896;
+  color: #ffffff;
+}
+
+.whiteCardContainer{
+  width: 90%;
+  max-width: 1152px;
+  margin: auto ;
+}
+
+.card-deco{
+  width: 90%;
+  max-width: 1152px;
+  min-width: 915px; 
+  margin: auto ;
+}
+
+.MPLogo{
+  max-width: 1152px;
+  padding-top: 22px;
+  padding-bottom: 15px;
+  width: 90%;
+  margin: auto;
+}
+
+.badgeMS{
+  font-family: Roboto;
+  font-size: 28px;
+  color: #043347;
+  text-decoration: rgb(4, 51, 71);
+  margin-bottom: 14px;
+}
+
+.tb-space-between-whiteCard-CertificateContent{
+  height: 100px;
+}
+
+.issuerTitle{
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.issuerDesc{
+   margin-top: 8px;
+}
+
+.issuerDesc p{
+  font-family: Roboto;
+  font-weight: 300;
+  font-size: 16px;
+  color: #043347;
+  line-height: 22px;
+}
+
+.badgeBlock{
+  margin-top: 37px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 200px;
+  min-width: 230px;
+  max-width: 300px;
+  border: 1px solid #006be0;
+  padding: 5px 22px;
+  background-color: #f8f8f8;
+  margin-right: 8px
+}
+
+.badgeBlock:last-child{
+  margin-right: 0px
+}
+
+.badgeBlock:hover{
+  background-color: #ffffff;
+}
+
+.badgeImage{
+  top: -40px;
+  position: relative;
+  width: 110px;
+  height: 110px;
+}
+
+.badgeTitle{
+  margin-top: -25px;
+  font-family: Roboto;
+  font-size: 16px;
+  color: #004ab5;  
+  text-align: center;
+  text-decoration: underline;
+}
+
+.badgeTitle:hover, .badgeBlock:hover div.badgeTitle {
+  font-family: Roboto;
+  font-size: 16px;
+  color: #006be0;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.badgeDesc{
+  max-width: 230px;
+  font-family: Roboto;
+  font-weight: lighter;
+  font-size: 13px;
+  line-height: normal;
+  color: #043347;
+  text-decoration: rgb(4, 51, 71);
+  text-align: center;
+  padding: 14px 2px 12px 2px;
+  
+}
+
+.tile-gallery-badged{
+  margin-top: 20px;
+  padding: 0px;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  list-style-type: none
+}
+
+footer.footer-simple{
+  margin: 30px auto 80px auto;   
+}
+
+footer.footer-simple a, footer.footer-simple span.link_med-bkg-pushed{
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: normal;
+  color: #002873;
+  white-space: nowrap;
+  display: inline-flex;
+  margin: 0px 0px 20px 0px;
+}
+
+footer.footer-simple span.pipe{
+  padding: 0px 20px;
+}
+
+.tile-wordy{
+  display: flex;
+  flex-flow: row;
+  border: 1px solid #d2d9dd; 
+}
+
+.tile-wordy .tile-class{
+
+  background-color: #f0f0f0;
+  padding: 50px;
+}
+
+.contentIssuedBadge .tile-class img{
+  min-width: 250px;
+  width: 100%;
+}
+
+.tile-wordy .textArea{
+  display: flex;
+  padding: 5%;
+}
+
+.tile-wordy .textArea .title-article{
+  margin: auto;
+}
+
+.contentBadgeClass{
+  display: flex;
+  flex-flow: row;
+}
+
+.contentBadgeClass .tile-class
+{ 
+  width: 205px;
+  padding-right: 15px;
+  font-family: Roboto;
+  font-size: 16px;
+  color: #000000;
+  text-decoration: rgb(0, 0, 0);
+}
+
+.imageAreaInside{
+  display: none;
+}
+
+.imageBkg{
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 25px;
+  margin-bottom: 15px;
+  display: grid;
+}
+
+.imageBkg img{
+  width: 150px;
+  margin: auto;
+}
+
+.tile-class-img{
+  width: 205px;
+}
+
+.contentBadgeClass .textArea{
+  opacity: 0.9;
+  font-family: Roboto;
+  font-weight: lighter;
+  font-size: 16px;
+  color: #000000;
+  line-height: 22px;
+  width: calc(100% - 220px);
+}
+
+.badgeclassDesc p{
+  font-family: Roboto;
+  font-size: 16px;
+  color: #043347;
+  text-decoration: rgb(4, 51, 71);
+}
+
+ .badgeclassTitle, .issuedBadgeTitle
+{
+  letter-spacing: 1px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  line-height: initial;
+}
+
+.title-article{
+  width:100%;
+}
+
+.criteria{
+  margin: 0px;
+}
+
+.article{
+  max-width: 680px;
+ }
+ 
+ .article h2{
+  max-width: 680px;
+  margin: 0px;
+ }
+
+
+.badgeclassIssued{
+  font-style: italic;
+  font-family: Roboto;
+  font-size: 13px;
+  color: #000000;
+  text-decoration: rgb(0, 0, 0);
+}
+
+.hrStyle{
+  border:2px solid #d2d9dd;
+  background-color: #d2d9dd; 
+  margin: 15px 0px 25px 0px; 
+  width: 100%;
+}
+
+.hrStyleBC{
+  border:2px solid #d2d9dd;
+  background-color: #d2d9dd; 
+  margin: 5px 0px 20px 0px; 
+  width: 100%;
+}
+
+.claims-list h2{
+  border-bottom: 1px solid #d2d9dd;
+  display: table;
+  margin-top: 50px;
+}
+
+.criteriaHead{
+  margin: 0px;
+  color: #043347;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.claims-list ul.list-ez {
+  counter-reset: li;
+  list-style-type: none;
+  font-size: 16px;
+  line-height: 24px;
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+.claims-list ul.list-ez >li {
+    font-family: Roboto;
+  font-size: 16px;
+  font-weight: lighter;
+  position: relative;   
+  padding: 5px 0 16px 35px;
+  line-height: normal;
+}
+
+.claims-list ul.list-ez >li:before{
+  font-family: Roboto;
+  font-weight: bold;
+  font-style: italic;
+  letter-spacing: 1px;
+  font-size: 20px;
+  content: counter(li);
+  counter-increment: li;
+  height: 26px;
+  width: 26px;
+  background-color: #043347;
+  border-radius: 50%;
+  color: #ffffff;
+  text-align: center;
+  position: absolute;      
+  left: 0;
+  top: 4px;
+}
+
+
+ul.list-action{
+  list-style-type: none;
+  padding: 9px 0px;
+}
+
+ul.list-action li{
+  padding: 5px 0 15px 0px;
+  display:flex;
+  align-items:flex-start;
+}
+
+ul.list-action li img{
+  padding-right: 10px;
+}
+
+.useBadgeLink{
+  margin-top: 20px;
+  margin-bottom: 28px;
+}
+
+.useBadgeLink a{
+  font-size: 16px
+}
+
+.bottom-space{
+  height: 100px;
+}
+
+@media screen and (max-width: 1200px){
+  .tb-space-between-whiteCard-CertificateContent{
+    height:40px;
+  }
+  .MPLogo{
+    padding-top: 7px;
+    padding-bottom: 10px;
+    width: 90%;
+    margin: auto;
+  }
+  
+  .bottom-space{
+    height: 40px;
+  }
+  
+  footer.footer-simple{
+    margin: 30px auto 20px auto;   
+  }
+}
+
+@media screen and (max-width: 1105px){
+  .contentBadgeClass .tile-class{
+    display: none;
+  }
+  
+  .contentBadgeClass .textArea{
+    width: 100%;
+  }
+  
+  .imageAreaInside{
+    display: block;
+    float: right;
+    width: 33%;
+    margin-left: 15px;
+    font-weight: normal;
+  }
+
+  .imageAreaInside .imageBkg{   
+    padding:21px;
+    display: grid;
+  }
+
+  .imageAreaInside .imageBkg img{
+    width: 100%;
+    margin: auto;
+  }
+  .article{
+    max-width: none;
+  }
+  .card-deco{
+    width: 90%;    
+    min-width: 0; 
+    margin: auto ;
+  }  
+
+}
+
+@media screen and (max-width: 896px){
+
+  .tb-space-between-whiteCard-CertificateContent{
+    height: 40px;
+  }
+  .tile-gallery-badged{
+    flex-wrap: wrap ;
+  }
+  .tile-wordy{
+
+    flex-flow: column;
+    justify-content:center;
+  }
+  .MPLogo {
+    display: flex;
+    padding-left: 0px;
+    justify-content:center;
+  }
+  
+  .tile-wordy .tile-class
+  {
+    width: auto;
+    height: 294px;
+    display: grid;
+    padding: 15px;
+  }
+  
+  .tile-wordy .tile-class img{
+    height: 83%;
+    max-height: 290px;
+    margin: auto;
+  }  
+
+  .tile-wordy .textArea{
+    padding: 10px 5% 30px 5%;
+    width: auto;
+    margin-left: 0px;
+  }
+
+  .badgeclassTitle
+  {
+    font-size: 35px;
+    margin-bottom: 10px;
+  }
+  .badgeMS{
+    font-size: 24px;
+    margin-bottom: 10px
+  }
+
+  .badgeBlock {
+    margin-top: 63px;
+  }
+  .issuerTitle {
+    padding-bottom: 0px;
+    font-size: 24px;
+  }
+
+  .badgeImage {
+    top: -43px;
+  }
+
+  .badgeLink{
+    margin-top: -26px;
+  }
+
+}
+
+@media screen and (max-width: 768px){
+  .whiteCardContainer{
+    width: 80%;
+    max-width: 555px; 
+    margin: auto ;
+  }
+  .hrStyle{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .tb-space-between-whiteCard-CertificateContent{
+    height: 40px;
+  }
+  
+  .imageAreaInside{
+    display: block;
+    float: right;
+    width: 129px;
+    margin-left: 15px;
+  }
+  
+  .tile-gallery-badged{
+   justify-content: center;
+  }
+  
+  .imageAreaInside  .imageBkg{   
+    padding:10px;
+    display: grid;
+  }
+  
+  .badgeclassTitle{
+    line-height: 1;
+  }
+
+  .tile-wordy .textAreaLink{
+    flex-direction: column-reverse;
+  }
+
+  .footer-simple span:last-of-type{
+    display: none;
+  }
+}	
+
+@media screen and (max-width: 414px	){
+  .footer-simple{
+    text-align: left;
+    display: flex;
+    flex-flow: column;
+    padding: 0px 0px 20px 20px;
+  }
+  
+  .footer-simple span.pipe{
+    display: none;
+  }
+  
+  .badgeBlock {
+    margin-right: 0px;
+  }
+}
+
+@media screen and (max-width: 365px	){
+
+  .whiteCardContainer{
+    width: 100%;
+    min-width: 320px;    
+  }
+  
+  .whiteCardContainer >*{
+    margin: 0px 16px;
+  }
+  
+  .card-deco{
+    width: auto;   
+  }
+
+  .tile-wordy .tile-class{
+    height: auto;
+  }
+}	
+

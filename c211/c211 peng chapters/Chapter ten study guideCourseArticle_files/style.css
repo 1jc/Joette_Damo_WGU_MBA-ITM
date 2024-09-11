@@ -1,0 +1,151 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+body{
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  color: #43414E;
+  font-size: 13px;
+}
+.clear{clear: both;}
+
+#header-wrapper {
+  background: #d3d3d4;
+  background: -webkit-linear-gradient(top, #ffffff 0%,#d3d3d4 45%,#a7a7a8 100%);
+  background: -moz-linear-gradient(top, #ffffff 0%,#d3d3d4 45%,#a7a7a8 100%);
+  background: -o-linear-gradient(top, #ffffff 0%,#d3d3d4 45%,#a7a7a8 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%,#d3d3d4 45%,#a7a7a8 100%);
+  background: linear-gradient(top, #ffffff 0%,#d3d3d4 45%,#a7a7a8 100%);
+  -webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+  -moz-box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);
+  height: 52px;
+  position: relative;
+  z-index: 2;
+}
+#header {
+  padding: 0 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+}
+.header-logo {
+  background: url('images/wgu-seal.png') no-repeat left top;
+  display: block;
+  float: left;
+  height: 42px;
+  margin: 5px 0 0;
+  width: 42px;
+}
+#subheader-wrapper {
+  background: #6589c6;
+  height: 50px;
+  border-bottom: solid 1px #5273ab;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,.4);
+  position: relative;
+  z-index: 1;
+}
+.subheader {
+  padding: 0 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+.subheader > h1 {
+  margin: 0;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 50px;
+  float: left;
+}
+.btn-download {
+  background: #E1E1E2 url('images/courses-sprite.png') no-repeat -18px 0;
+  background: url('images/courses-sprite.png') no-repeat -18px 0, -webkit-linear-gradient(top, #F7F7F8 0%, #CACACB 100%);
+  background: url('images/courses-sprite.png') no-repeat -18px 0, -moz-linear-gradient(top, #F7F7F8 0%, #CACACB 100%);
+  background: url('images/courses-sprite.png') no-repeat -18px 0, -o-linear-gradient(top, #F7F7F8 0%, #CACACB 100%);
+  background: url('images/courses-sprite.png') no-repeat -18px 0, -ms-linear-gradient(top, #F7F7F8 0%, #CACACB 100%);
+  background: url('images/courses-sprite.png') no-repeat -18px 0, linear-gradient(top, #F7F7F8 0%, #CACACB 100%);
+  border: 1px solid #A9A9AB;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
+  color: #666;
+  display: block;
+  float: right;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 11px 0 0 0;
+  padding: 0 10px 0 30px;
+  text-transform: uppercase;
+  -webkit-transition: color 60ms linear;
+  -moz-transition: color 60ms linear;
+  -o-transition: color 60ms linear;
+  -ms-transition: color 60ms linear;
+  transition: color 60ms linear;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn {
+  background-color: #D2D2D3;
+  background-image: -webkit-linear-gradient(top,#E8E8E9,#BBBBBC);
+  background-image: -moz-linear-gradient(top,#E8E8E9,#BBBBBC);
+  background-image: -o-linear-gradient(top,#E8E8E9,#BBBBBC);
+  background-image: -ms-linear-gradient(top,#E8E8E9,#BBBBBC);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  border: 1px solid #A9A9AB;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
+  -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 1);
+  color: #666;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: normal;
+  padding: 8px 16px 7px;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+}
+
+#wrapper {
+  margin: 10px auto 40px;
+  clear: both;
+  max-width: 1300px;
+  padding: 0 20px;
+}
+
+h2{
+  color: #2356AD;
+  font-size: 16px;
+}
+h3{
+  font-size: 14px;
+  font-weight: bold;
+}
+p{margin-bottom: 15px;}
+ul, ol{margin: 0 0 0 30px;}
+ul li, ol li{margin: 0 0 8px 0;}
+ul li ul, ol li ul{margin: 8px 0 0 20px;}
+ol li ul{list-style: disc;}
+
+.htmlDetailElementTable td
+{ 
+  border: 1px solid #000;
+}
